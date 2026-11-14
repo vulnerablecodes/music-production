@@ -1,0 +1,7 @@
+Compiled ARM32 and ARM64 with official inMusic SDK at febd2ca5bd9eb16c4a412837196e145566bc981b.
+SDK validation: 0 errors, 0 warnings.
+Native host-sim: 20 passes at 44.1k/128 and 20 passes at 48k/32.
+Direct ASan/UBSan tests: PASS; leak checking disabled because tracing prevents LeakSanitizer here.
+44.1/48/96k, blocks 32/127/128/511/512, each effect and stack, parameter extremes, stereo in-place, dry/bypass, mute and stop checks.
+Four varispeed spectral checks: PASS within 10 Hz granular tolerance.
+36 documented settings verified to affect audio. Eight view selectors and all setting/enable/LED/global bindings audited. Legacy 25 parameter IDs and old state restoration checked. No physical MPC tested. UI touch feel and MPC CPU performance are unverified.

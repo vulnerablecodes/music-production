@@ -1,0 +1,7 @@
+PASS speed index 1: 0.225196 reel revolutions/sec
+PASS speed index 0: 0.449701 reel revolutions/sec
+PASS speed index 2: 0.675168 reel revolutions/sec
+PASS speed index 3: 0.809725 reel revolutions/sec
+PASS stopped transport freezes reels
+PASS reverse rotates backward
+PASS brake stops reels

@@ -1,0 +1,369 @@
+Building Crazy Cassette 88 by Tropix R!X Crazy Jungle Sounds  (/workspace/scratch/e9124b71afd1/sdk/plugins/Crazy Cassette 88)
+  toolchain: zig   target: all   release
+Using zig 0.17.1 (from /workspace/scratch/e9124b71afd1/sdk/.sdk-tools/zigenv)
+
+[1/7] Native build (for host_sim and testing on this computer)
+  [native] compiling 1 source file -> build/native/crazy-cassette-88.so
+  [native] ok (2.6 MB, 0.1s)
+
+[2/7] Parameter dump (host_sim) -> build/params.json
+  host_sim dump -> build/params.json
+
+[3/7] arm32 build (MPC Live/X/One (32-bit))
+  [arm32] compiling 1 source file -> build/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/VST/crazy-cassette-88-arm32.so
+  [arm32] ok (205 KB, 3.4s)
+
+[4/7] arm64 build (MPC Live II/One+/Key 61/X SE/3 (64-bit))
+  [arm64] compiling 1 source file -> build/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/VST/crazy-cassette-88-arm64.so
+  [arm64] ok (257 KB, 3.7s)
+
+[5/7] Assemble output folder: build/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/
+  copied plugin.json
+  copying hand-written skins/ -> Plugin Skins/ (gen_ui.py not run)
+
+[6/7] version.xml
+  version 1.0.5.0, uiversion 0.1.0.0
+
+[7/7] Validate
+Validating /workspace/scratch/e9124b71afd1/sdk/plugins/Crazy Cassette 88/build/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88
+OK     plugin.json: Crazy Cassette 88 by Tropix R!X Crazy Jungle Sounds (effect, uid TW0p)
+OK     folder name "Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88"
+OK     file32: crazy-cassette-88-arm32.so is a 32-bit ARM shared object
+OK     file32: needed libraries: libm.so.6, libc.so.6, ld-linux-armhf.so.3, libpthread.so.0, libdl.so.2
+OK     file32: max GLIBC requirement 2.27
+OK     file32: exports VSTPluginMain
+OK     file64: crazy-cassette-88-arm64.so is a 64-bit AArch64 shared object
+OK     file64: needed libraries: libm.so.6, libc.so.6, libpthread.so.0, libdl.so.2
+OK     file64: max GLIBC requirement 2.27
+OK     file64: exports VSTPluginMain
+OK     uid matches the binary (TW0p)
+OK     name matches the binary (Crazy Cassette 88)
+OK     manufacturer matches the binary (Tropix R!X Crazy Jungle Sounds)
+OK     kind matches the binary (effect)
+OK     numInputs matches the binary (2)
+OK     numOutputs matches the binary (2)
+OK     TUI.json: all parameter handles are within 0..27
+OK     TUI.json: image bypass_off.png present
+OK     TUI.json: image bypass_on.png present
+OK     TUI.json: image cassette_modes.png present
+OK     TUI.json: image deck.png present
+OK     TUI.json: image deck_fader.png present
+OK     TUI.json: image fader_h_uni.png present
+OK     TUI.json: image hold_off.png present
+OK     TUI.json: image hold_on.png present
+OK     TUI.json: image knob_uni.png present
+OK     TUI.json: image led0_off.png present
+OK     TUI.json: image led0_on.png present
+OK     TUI.json: image led1_off.png present
+OK     TUI.json: image led1_on.png present
+OK     TUI.json: image led2_off.png present
+OK     TUI.json: image led2_on.png present
+OK     TUI.json: image led3_off.png present
+OK     TUI.json: image led3_on.png present
+OK     TUI.json: image led4_off.png present
+OK     TUI.json: image led4_on.png present
+OK     TUI.json: image led5_off.png present
+OK     TUI.json: image led5_on.png present
+OK     TUI.json: image led6_off.png present
+OK     TUI.json: image led6_on.png present
+OK     TUI.json: image led7_off.png present
+OK     TUI.json: image led7_on.png present
+OK     TUI.json: image name0_off.png present
+OK     TUI.json: image name0_on.png present
+OK     TUI.json: image name1_off.png present
+OK     TUI.json: image name1_on.png present
+OK     TUI.json: image name2_off.png present
+OK     TUI.json: image name2_on.png present
+OK     TUI.json: image name3_off.png present
+OK     TUI.json: image name3_on.png present
+OK     TUI.json: image name4_off.png present
+OK     TUI.json: image name4_on.png present
+OK     TUI.json: image name5_off.png present
+OK     TUI.json: image name5_on.png present
+OK     TUI.json: image name6_off.png present
+OK     TUI.json: image name6_on.png present
+OK     TUI.json: image name7_off.png present
+OK     TUI.json: image name7_on.png present
+OK     TUI.json: image pad_off.png present
+OK     TUI.json: image pad_on.png present
+OK     TUI.json: image reel_motion.png present
+OK     TUI.json: image seg3_off.png present
+OK     TUI.json: image seg3_on.png present
+OK     TUI.json: image seg4_off.png present
+OK     TUI.json: image seg4_on.png present
+OK     TUI.json: image small4_choice0_off.png present
+OK     TUI.json: image small4_choice0_on.png present
+OK     TUI.json: image small4_choice1_off.png present
+OK     TUI.json: image small4_choice1_on.png present
+OK     TUI.json: image small4_choice2_off.png present
+OK     TUI.json: image small4_choice2_on.png present
+OK     TUI.json: image small4_choice3_off.png present
+OK     TUI.json: image small4_choice3_on.png present
+OK     TUI.json: image small4_choice4_off.png present
+OK     TUI.json: image small4_choice4_on.png present
+OK     TUI.json: image small4_choice5_off.png present
+OK     TUI.json: image small4_choice5_on.png present
+OK     TUI.json: image small4_choice6_off.png present
+OK     TUI.json: image small4_choice6_on.png present
+OK     TUI.json: image small5_choice0_off.png present
+OK     TUI.json: image small5_choice0_on.png present
+OK     TUI.json: image small5_choice1_off.png present
+OK     TUI.json: image small5_choice1_on.png present
+OK     TUI.json: image small5_choice2_off.png present
+OK     TUI.json: image small5_choice2_on.png present
+OK     TUI.json: image small5_choice3_off.png present
+OK     TUI.json: image small5_choice3_on.png present
+OK     TUI.json: image small5_choice4_off.png present
+OK     TUI.json: image small5_choice4_on.png present
+OK     TUI.json: image small5_choice5_off.png present
+OK     TUI.json: image small5_choice5_on.png present
+OK     TUI.json: image small5_choice6_off.png present
+OK     TUI.json: image small5_choice6_on.png present
+OK     TUI.json: image small5_choice7_off.png present
+OK     TUI.json: image small5_choice7_on.png present
+OK     TUI.json: image small7_choice0_off.png present
+OK     TUI.json: image small7_choice0_on.png present
+OK     TUI.json: image small7_choice1_off.png present
+OK     TUI.json: image small7_choice1_on.png present
+OK     TUI.json: image small7_choice2_off.png present
+OK     TUI.json: image small7_choice2_on.png present
+OK     TUI.json: image small7_choice3_off.png present
+OK     TUI.json: image small7_choice3_on.png present
+OK     TUI.json: image small7_choice4_off.png present
+OK     TUI.json: image small7_choice4_on.png present
+OK     TUI.json: image small7_choice5_off.png present
+OK     TUI.json: image small7_choice5_on.png present
+OK     TUI.json: image small7_choice6_off.png present
+OK     TUI.json: image small7_choice6_on.png present
+OK     TUI.json: image small7_choice8_off.png present
+OK     TUI.json: image small7_choice8_on.png present
+OK     TUI.json: image sub0_choice0_off.png present
+OK     TUI.json: image sub0_choice0_on.png present
+OK     TUI.json: image sub0_choice1_off.png present
+OK     TUI.json: image sub0_choice1_on.png present
+OK     TUI.json: image sub0_choice2_off.png present
+OK     TUI.json: image sub0_choice2_on.png present
+OK     TUI.json: image sub0_choice3_off.png present
+OK     TUI.json: image sub0_choice3_on.png present
+OK     TUI.json: image sub1_choice0_off.png present
+OK     TUI.json: image sub1_choice0_on.png present
+OK     TUI.json: image sub1_choice1_off.png present
+OK     TUI.json: image sub1_choice1_on.png present
+OK     TUI.json: image sub1_choice2_off.png present
+OK     TUI.json: image sub1_choice2_on.png present
+OK     TUI.json: image sub6_choice0_off.png present
+OK     TUI.json: image sub6_choice0_on.png present
+OK     TUI.json: image sub6_choice1_off.png present
+OK     TUI.json: image sub6_choice1_on.png present
+OK     TUI.json: image sub6_choice2_off.png present
+OK     TUI.json: image sub6_choice2_on.png present
+OK     TUI.json: image sub6_choice3_off.png present
+OK     TUI.json: image sub6_choice3_on.png present
+OK     TUI.json: image toggle_off.png present
+OK     TUI.json: image toggle_on.png present
+OK     TUI.json: 3 tabs
+OK     Q-Links.json: 3 tab maps, all values in range
+OK     version.xml uiversion 0.1.0.0
+0 errors, 0 warnings
+
+========================================================================
+Build finished: Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88
+  Output folder: /workspace/scratch/e9124b71afd1/sdk/plugins/Crazy Cassette 88/build/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88
+    plugin.json                              626 B
+    version.xml                              152 B
+    Plugin Skins/Q-Links.json                2 KB
+    Plugin Skins/TUI.json                    271 KB
+    Plugin Skins/bypass_off.png              521 B
+    Plugin Skins/bypass_on.png               517 B
+    Plugin Skins/cassette-0.png              10 KB
+    Plugin Skins/cassette-1.png              6 KB
+    Plugin Skins/cassette-2.png              5 KB
+    Plugin Skins/cassette-3.png              7 KB
+    Plugin Skins/cassette-4.png              7 KB
+    Plugin Skins/cassette-5.png              6 KB
+    Plugin Skins/cassette-6.png              6 KB
+    Plugin Skins/cassette-7.png              8 KB
+    Plugin Skins/cassette_modes.png          55 KB
+    Plugin Skins/deck.png                    200 KB
+    Plugin Skins/deck_fader.png              89 KB
+    Plugin Skins/fader_h_uni.png             99 KB
+    Plugin Skins/global_off.png              505 B
+    Plugin Skins/global_on.png               457 B
+    Plugin Skins/hold_off.png                2 KB
+    Plugin Skins/hold_on.png                 2 KB
+    Plugin Skins/knob_uni.png                79 KB
+    Plugin Skins/led0_off.png                200 B
+    Plugin Skins/led0_on.png                 2 KB
+    Plugin Skins/led1_off.png                200 B
+    Plugin Skins/led1_on.png                 2 KB
+    Plugin Skins/led2_off.png                200 B
+    Plugin Skins/led2_on.png                 2 KB
+    Plugin Skins/led3_off.png                200 B
+    Plugin Skins/led3_on.png                 2 KB
+    Plugin Skins/led4_off.png                200 B
+    Plugin Skins/led4_on.png                 2 KB
+    Plugin Skins/led5_off.png                200 B
+    Plugin Skins/led5_on.png                 2 KB
+    Plugin Skins/led6_off.png                200 B
+    Plugin Skins/led6_on.png                 2 KB
+    Plugin Skins/led7_off.png                200 B
+    Plugin Skins/led7_on.png                 2 KB
+    Plugin Skins/name0_off.png               894 B
+    Plugin Skins/name0_on.png                1 KB
+    Plugin Skins/name1_off.png               771 B
+    Plugin Skins/name1_on.png                1 KB
+    Plugin Skins/name2_off.png               615 B
+    Plugin Skins/name2_on.png                912 B
+    Plugin Skins/name3_off.png               702 B
+    Plugin Skins/name3_on.png                983 B
+    Plugin Skins/name4_off.png               1 KB
+    Plugin Skins/name4_on.png                2 KB
+    Plugin Skins/name5_off.png               611 B
+    Plugin Skins/name5_on.png                852 B
+    Plugin Skins/name6_off.png               1006 B
+    Plugin Skins/name6_on.png                1 KB
+    Plugin Skins/name7_off.png               932 B
+    Plugin Skins/name7_on.png                1 KB
+    Plugin Skins/pad0_off.png                648 B
+    Plugin Skins/pad0_on.png                 595 B
+    Plugin Skins/pad1_off.png                648 B
+    Plugin Skins/pad1_on.png                 599 B
+    Plugin Skins/pad2_off.png                648 B
+    Plugin Skins/pad2_on.png                 595 B
+    Plugin Skins/pad3_off.png                648 B
+    Plugin Skins/pad3_on.png                 586 B
+    Plugin Skins/pad4_off.png                648 B
+    Plugin Skins/pad4_on.png                 598 B
+    Plugin Skins/pad5_off.png                648 B
+    Plugin Skins/pad5_on.png                 593 B
+    Plugin Skins/pad6_off.png                648 B
+    Plugin Skins/pad6_on.png                 595 B
+    Plugin Skins/pad7_off.png                648 B
+    Plugin Skins/pad7_on.png                 594 B
+    Plugin Skins/pad_off.png                 763 B
+    Plugin Skins/pad_on.png                  708 B
+    Plugin Skins/reel_motion.png             19 KB
+    Plugin Skins/reel_native_0_0.png         119 KB
+    Plugin Skins/reel_native_0_1.png         119 KB
+    Plugin Skins/reel_native_1_0.png         117 KB
+    Plugin Skins/reel_native_1_1.png         117 KB
+    Plugin Skins/reel_native_2_0.png         120 KB
+    Plugin Skins/reel_native_2_1.png         119 KB
+    Plugin Skins/reel_native_3_0.png         120 KB
+    Plugin Skins/reel_native_3_1.png         120 KB
+    Plugin Skins/reel_still.png              637 B
+    Plugin Skins/seg3_off.png                573 B
+    Plugin Skins/seg3_on.png                 606 B
+    Plugin Skins/seg4_off.png                544 B
+    Plugin Skins/seg4_on.png                 570 B
+    Plugin Skins/small0_off.png              659 B
+    Plugin Skins/small0_on.png               5 KB
+    Plugin Skins/small1_off.png              662 B
+    Plugin Skins/small1_on.png               4 KB
+    Plugin Skins/small2_off.png              654 B
+    Plugin Skins/small2_on.png               5 KB
+    Plugin Skins/small3_off.png              625 B
+    Plugin Skins/small3_on.png               4 KB
+    Plugin Skins/small4_choice0_off.png      846 B
+    Plugin Skins/small4_choice0_on.png       4 KB
+    Plugin Skins/small4_choice1_off.png      1 KB
+    Plugin Skins/small4_choice1_on.png       5 KB
+    Plugin Skins/small4_choice2_off.png      1 KB
+    Plugin Skins/small4_choice2_on.png       5 KB
+    Plugin Skins/small4_choice3_off.png      996 B
+    Plugin Skins/small4_choice3_on.png       4 KB
+    Plugin Skins/small4_choice4_off.png      1 KB
+    Plugin Skins/small4_choice4_on.png       5 KB
+    Plugin Skins/small4_choice5_off.png      1 KB
+    Plugin Skins/small4_choice5_on.png       5 KB
+    Plugin Skins/small4_choice6_off.png      989 B
+    Plugin Skins/small4_choice6_on.png       5 KB
+    Plugin Skins/small4_off.png              656 B
+    Plugin Skins/small4_on.png               4 KB
+    Plugin Skins/small5_choice0_off.png      859 B
+    Plugin Skins/small5_choice0_on.png       4 KB
+    Plugin Skins/small5_choice1_off.png      1 KB
+    Plugin Skins/small5_choice1_on.png       5 KB
+    Plugin Skins/small5_choice2_off.png      1 KB
+    Plugin Skins/small5_choice2_on.png       5 KB
+    Plugin Skins/small5_choice3_off.png      1016 B
+    Plugin Skins/small5_choice3_on.png       4 KB
+    Plugin Skins/small5_choice4_off.png      1 KB
+    Plugin Skins/small5_choice4_on.png       5 KB
+    Plugin Skins/small5_choice5_off.png      1 KB
+    Plugin Skins/small5_choice5_on.png       5 KB
+    Plugin Skins/small5_choice6_off.png      990 B
+    Plugin Skins/small5_choice6_on.png       4 KB
+    Plugin Skins/small5_choice7_off.png      1 KB
+    Plugin Skins/small5_choice7_on.png       5 KB
+    Plugin Skins/small5_off.png              655 B
+    Plugin Skins/small5_on.png               4 KB
+    Plugin Skins/small6_off.png              641 B
+    Plugin Skins/small6_on.png               4 KB
+    Plugin Skins/small7_choice0_off.png      1 KB
+    Plugin Skins/small7_choice0_on.png       5 KB
+    Plugin Skins/small7_choice1_off.png      1 KB
+    Plugin Skins/small7_choice1_on.png       5 KB
+    Plugin Skins/small7_choice2_off.png      2 KB
+    Plugin Skins/small7_choice2_on.png       5 KB
+    Plugin Skins/small7_choice3_off.png      1 KB
+    Plugin Skins/small7_choice3_on.png       5 KB
+    Plugin Skins/small7_choice4_off.png      2 KB
+    Plugin Skins/small7_choice4_on.png       5 KB
+    Plugin Skins/small7_choice5_off.png      2 KB
+    Plugin Skins/small7_choice5_on.png       5 KB
+    Plugin Skins/small7_choice6_off.png      1 KB
+    Plugin Skins/small7_choice6_on.png       5 KB
+    Plugin Skins/small7_choice8_off.png      1 KB
+    Plugin Skins/small7_choice8_on.png       5 KB
+    Plugin Skins/small7_off.png              627 B
+    Plugin Skins/small7_on.png               4 KB
+    Plugin Skins/speed_off.png               487 B
+    Plugin Skins/speed_on.png                436 B
+    Plugin Skins/sub0_choice0_off.png        2 KB
+    Plugin Skins/sub0_choice0_on.png         6 KB
+    Plugin Skins/sub0_choice1_off.png        1 KB
+    Plugin Skins/sub0_choice1_on.png         6 KB
+    Plugin Skins/sub0_choice2_off.png        2 KB
+    Plugin Skins/sub0_choice2_on.png         6 KB
+    Plugin Skins/sub0_choice3_off.png        2 KB
+    Plugin Skins/sub0_choice3_on.png         6 KB
+    Plugin Skins/sub0_off.png                655 B
+    Plugin Skins/sub0_on.png                 5 KB
+    Plugin Skins/sub1_choice0_off.png        2 KB
+    Plugin Skins/sub1_choice0_on.png         6 KB
+    Plugin Skins/sub1_choice1_off.png        2 KB
+    Plugin Skins/sub1_choice1_on.png         6 KB
+    Plugin Skins/sub1_choice2_off.png        2 KB
+    Plugin Skins/sub1_choice2_on.png         6 KB
+    Plugin Skins/sub1_off.png                671 B
+    Plugin Skins/sub1_on.png                 5 KB
+    Plugin Skins/sub2_off.png                681 B
+    Plugin Skins/sub2_on.png                 5 KB
+    Plugin Skins/sub3_off.png                655 B
+    Plugin Skins/sub3_on.png                 4 KB
+    Plugin Skins/sub4_off.png                677 B
+    Plugin Skins/sub4_on.png                 5 KB
+    Plugin Skins/sub5_off.png                687 B
+    Plugin Skins/sub5_on.png                 5 KB
+    Plugin Skins/sub6_choice0_off.png        831 B
+    Plugin Skins/sub6_choice0_on.png         5 KB
+    Plugin Skins/sub6_choice1_off.png        1 KB
+    Plugin Skins/sub6_choice1_on.png         5 KB
+    Plugin Skins/sub6_choice2_off.png        1 KB
+    Plugin Skins/sub6_choice2_on.png         5 KB
+    Plugin Skins/sub6_choice3_off.png        972 B
+    Plugin Skins/sub6_choice3_on.png         5 KB
+    Plugin Skins/sub6_off.png                626 B
+    Plugin Skins/sub6_on.png                 5 KB
+    Plugin Skins/sub7_off.png                660 B
+    Plugin Skins/sub7_on.png                 5 KB
+    Plugin Skins/toggle_off.png              1 KB
+    Plugin Skins/toggle_on.png               1 KB
+    VST/crazy-cassette-88-arm32.so           205 KB
+    VST/crazy-cassette-88-arm64.so           257 KB
+  Native test build: /workspace/scratch/e9124b71afd1/sdk/plugins/Crazy Cassette 88/build/native/crazy-cassette-88.so
+
+Next:
+  * Make a zip for sharing:   python tools/package.py "plugins/Crazy Cassette 88"
+  * Or copy the output folder into a folder named "VST2 Plugins" on your MPC's drive (see INSTALL.txt in the zip).

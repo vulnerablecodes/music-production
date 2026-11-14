@@ -1,0 +1,11 @@
+PASS mode 1: 4 visible settings drive audio
+PASS mode 2: 3 visible settings drive audio
+PASS mode 3: 1 visible settings drive audio
+PASS mode 4: 1 visible settings drive audio
+PASS mode 5: 7 visible settings drive audio
+PASS mode 6: 8 visible settings drive audio
+PASS mode 7: 4 visible settings drive audio
+PASS mode 8: 8 visible settings drive audio
+PASS: 36 documented character settings; all 8 view selections leave sound and enables unchanged
+PASS independent Noise and Mix behavior
+PASS original 25 stable IDs/indices and legacy 1/16T state restoration

@@ -1,0 +1,4 @@
+PASS: 44100 Hz; blocks 32,127,128,511,512; eight modes + stack, bounds, dry/bypass, in-place
+PASS: 48000 Hz; blocks 32,127,128,511,512; eight modes + stack, bounds, dry/bypass, in-place
+PASS: 96000 Hz; blocks 32,127,128,511,512; eight modes + stack, bounds, dry/bypass, in-place
+PASS: brake stops, mute silences; speed renders written

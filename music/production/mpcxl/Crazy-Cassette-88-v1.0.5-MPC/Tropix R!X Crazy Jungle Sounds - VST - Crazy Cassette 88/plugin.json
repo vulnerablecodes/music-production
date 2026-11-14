@@ -1,0 +1,18 @@
+{
+  "name": "Crazy Cassette 88",
+  "manufacturer": "Tropix R!X Crazy Jungle Sounds",
+  "version": "1.0.5",
+  "format": "vst2",
+  "kind": "effect",
+  "uid": "TW0p",
+  "numInputs": 2,
+  "numOutputs": 2,
+  "category": "Effect",
+  "file32": "VST/crazy-cassette-88-arm32.so",
+  "file64": "VST/crazy-cassette-88-arm64.so",
+  "description": "Eight-mode stereo cassette performance effect: speed, saturation, mute, reverse, warble, lo-fi, brake and stutter.",
+  "author": "Tropix R!X Crazy Jungle Sounds",
+  "url": "https://github.com/inmusic-software/mpc-plugin-builder-sdk",
+  "license": "MIT",
+  "releaseHistory": "revisions.txt"
+}

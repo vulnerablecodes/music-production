@@ -1,0 +1,100 @@
+CRAZY CASSETTE 88 — v1.0.5 — REVISIONS
+Manufacturer: Tropix R!X Crazy Jungle Sounds
+Latest plugin version: 1.0.5
+ORDER: Newest version first. New entries must be prepended below this header.
+
+Timestamp basis: Historical timestamps below are verified completion/modification
+ times of the original ZIP artifacts retained from each release, not inferred
+ commit times or measured Library upload completion times. Seconds are recorded
+ from filesystem metadata. America/Los_Angeles and UTC are both shown.
+
+VERSION 1.0.5
+========================================================================
+Release prepared: 2026-11-14 01:38:58 PST (UTC-0800) | 2026-11-14 09:38:58 UTC
+- User confirmed v1.0.4 reel images shift only on control changes, not continuously, on MPC XL.
+- Investigated OpenMPC's moving-picture reporting path: host-cached values need audioMasterAutomate notifications; full UpdateDisplay calls rebuild screens.
+- Replaced reliance on unverified native Image animation with explicitly notified 64-frame reel parameters.
+- Added a normal-priority worker using a monotonic clock at up to 25 Hz; it owns phase and reports frame changes to the host.
+- Host notifications run only on that worker, never inside process(); no recurring UpdateDisplay calls.
+- Restored speed-dependent forward/reverse movement and wall-clock Brake slowdown, independent of sequencer PLAY state.
+- Added a bound UI counter below the version badge for on-device update-path diagnosis.
+- Kept working audio processing and existing parameter IDs/order; removed the competing audio-thread phase publication only.
+- Added a cached-host regression that advances all four speeds without user gestures and checks worker shutdown and callback thread.
+- New cached-host tests, ASan/UBSan worker lifecycle check, UI binding audit, Speed audio checks, SDK ARM validation and native host 20/20 passed.
+- LSan disabled in the sanitizer run due to tracing restrictions; new notification path still needs physical XL validation.
+- This release addresses the missing repaint notification mechanism; it is not a claim of hardware-verified animation.
+
+VERSION 1.0.4
+========================================================================
+Release prepared: 2026-11-14 01:13:02 PST (UTC-0800) | 2026-11-14 09:13:02 UTC
+- User confirmed all four Speed audio settings work on MPC XL; reported all reels static in v1.0.3.
+- Replaced displayed audio-phase telemetry strips with MPC-native animated Image sequences.
+- Added equal-length 400-frame forward/reverse strips: 5/10/15/18 rotations per cycle for 1/4, 1/2, 3/4, 9/10.
+- Motion is driven by the UI animation clock, not host transport flags or audio-parameter polling.
+- Reels animate whenever Speed is enabled, Bypass is off and Brake is off, including pad audition with stopped transport.
+- Speed off, Bypass on or Brake on shows stationary reels; Brake freezes immediately visually in this build.
+- Reverse selects backward native animation. Displayed motion does not measure physical reel radius or audio latency.
+- Retained Reel Phase at index 27 for saved-state compatibility, but removed it from visible reel bindings.
+- Speed/audio algorithms unchanged; source matches v1.0.3 except plugin version metadata.
+- Added ANIMATION FIX badge, native-animation frame/gate tests and updated preview rendering.
+- Native host passed 20 checks; SDK validation and UI binding audit passed; all eight strips passed pixel-angle checks.
+- Native timer behavior on physical MPC XL remains unverified until the user's next test.
+
+VERSION 1.0.3
+========================================================================
+Original package completed: 2026-11-14 00:41:02 PST (UTC-0800) | 2026-11-14 08:41:02 UTC
+Documentation-only repack: 2026-11-14 00:45:57 PST (UTC-0800) | 2026-11-14 08:45:57 UTC
+- Added this complete newest-first revisions.txt at ZIP root, plugin-folder root and source.
+- Added a permanent project release rule and enforced history/version/order checks in packaging.
+- Same v1.0.3 DSP/ARM binaries; no new plugin version for this documentation-only repack.
+- Added two 64-frame cassette reel overlays bound to audio-engine phase.
+- Reel motion follows the selected Speed ratio: 1/4, 1/2, 3/4, 9/10 when engaged.
+- Reverse turns reels backward; Brake progressively stops them; stopped transport freezes motion.
+- Added non-automatable Reel Phase telemetry at appended index 27; kept existing IDs/indices.
+- Added a reel preview GIF, reproducible preview generator, and rate/direction/stop tests.
+- Checked reel bindings, native host load/audio/state (20/20) and both ARM binaries (zero warnings/errors).
+- Physical MPC XL reel redraw remains unverified; the GIF is an asset rendering, not a hardware capture.
+
+VERSION 1.0.2
+========================================================================
+Original package completed: 2026-11-14 00:35:22 PST (UTC-0800) | 2026-11-14 08:35:22 UTC
+- Fixed blank main-screen captions reported in the user's MPC XL photographs.
+- Baked Speed fractions, mode names, variation captions and HOLD into native button images.
+- Removed overlay Labels from affected touch targets to avoid hidden text and touch interception.
+- Ordered Speed buttons top-to-bottom: 1/4, 1/2, 3/4, 9/10; preserved saved speed indices.
+- Made inactive LEDs black and added a visible SPEED FIX version badge.
+- Verified live Speed changes with continuous 1 kHz input: 250/500/750/900 Hz output.
+- Added caption-pixel/touch-overlap checks and SPEED-TEST.txt; host and ARM checks passed.
+- Audio algorithms unchanged; physical XL retest required.
+
+VERSION 1.0.1
+========================================================================
+Original package completed: 2026-11-13 23:32:09 PST (UTC-0800) | 2026-11-14 07:32:09 UTC
+- Added eight distinct cassette designs/color families and mode-specific left-hand controls.
+- Separated selecting a mode view from engaging its effect with the large pad underneath.
+- Added independent enable LEDs and latch/momentary skin branches.
+- Compared controls with the official Fly Tape II User Guide v1.1 and supplied screenshots.
+- Added the documented 1/4-triplet Stutter division; retained legacy 1/16-triplet.
+- Made Stutter/Reverse size changes take effect while engaged.
+- Changed Warble to increasing depth coefficients and added smoothed pseudo-random drift.
+- Added original adjustable Repeat Wear for progressive stutter filtering/quantization.
+- Appended Mode View (25) and Repeat Wear (26); kept original 25 IDs/indices and UID.
+- Tested 36 documented settings for distinct audio; audited all view/setting/enable/global bindings.
+- Tested legacy state restoration, 44.1/48/96 kHz, varied blocks, stereo in-place, mute/brake and spectral behavior.
+- ASan/UBSan checks passed with leak detection disabled because tracing prevented LeakSanitizer.
+- Caveat: the expanded Stutter choice range can remap older normalized automation; recheck it.
+- XL later confirmed loading but showed missing labels; addressed in v1.0.2.
+- Video retrieval was blocked; reference alignment used the official manual and screenshots.
+
+VERSION 1.0.0
+========================================================================
+Original package completed: 2026-11-13 23:14:48 PST (UTC-0800) | 2026-11-14 07:14:48 UTC
+- Initial Crazy Cassette 88 by Tropix R!X Crazy Jungle Sounds, UID TW0p.
+- Implemented Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter as original DSP.
+- Added independent Noise/Mix, Bypass, Hold, drive/depth/tone/edge controls and eight presets.
+- Added host automation/project state and an original cassette-style native touch skin/Q-Link mapping.
+- Compiled native Linux, ARM32 and ARM64 using the official inMusic MPC Plugin Builder SDK.
+- Shipped binaries, source/SDK snapshot, license, installation guide, previews and verification logs.
+- Host/audio/state and SDK validation passed; no physical MPC was available for testing.
+- Scope throughout: original feature approximations, not proprietary AIR/MSXII DSP or branding.
+

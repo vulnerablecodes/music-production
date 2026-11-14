@@ -1,0 +1,18 @@
+{
+  "id": "crazy-cassette-88",
+  "name": "Crazy Cassette 88",
+  "author": "Tropix R!X Crazy Jungle Sounds",
+  "repo": "vulnerablecodes/music-production",
+  "kind": "effect",
+  "license": "MIT",
+  "summary": "Eight-mode stereo cassette performance effect: speed, saturation, mute, reverse, warble, lo-fi, brake and stutter.",
+  "style": "utility",
+  "tags": [
+    "tape",
+    "lo-fi",
+    "distortion",
+    "performance"
+  ],
+  "screenshot": "https://raw.githubusercontent.com/vulnerablecodes/music-production/v1.0.5/music/production/mpcxl/Crazy-Cassette-88-v1.0.5-MPC/UI-preview.png",
+  "asset_pattern": "Crazy-Cassette-88-*-mpc-armv7.zip"
+}

@@ -1,0 +1,55 @@
+Crazy Cassette 88 1.0.5 - plugin for Akai MPC standalone
+by Tropix R!X Crazy Jungle Sounds
+========================================================================
+
+Eight-mode stereo cassette performance effect: speed, saturation, mute, reverse, warble, lo-fi, brake and stutter.
+
+This is an EFFECT plugin (it processes audio as an insert on a track or program).
+
+HOW TO INSTALL
+--------------
+
+1. Copy the folder
+
+       "Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88"
+
+   into a folder named exactly   VST2 Plugins   at the root (top level) of a USB drive,
+   an SD card, or the MPC's internal drive. Create the "VST2 Plugins" folder if it does not
+   exist yet. The result should look like this:
+
+       <drive>/VST2 Plugins/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/plugin.json
+       <drive>/VST2 Plugins/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/version.xml
+       <drive>/VST2 Plugins/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/VST/...
+
+   Keep the folder name exactly as it is - the MPC uses it to find the plugin.
+
+2. On the MPC, open   Preferences > Enhancements (Beta)   and switch on both
+   "Enable Enhancements" and "External Plugin Support". Plug in the drive (or restart the MPC if the
+   plugin does not appear).
+
+3. The plugin now appears in the plugin browser under   "External Plugins".
+   Add it as an insert effect on a track, program, pad or mixer channel.
+
+TO UNINSTALL
+------------
+
+Delete the "Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88" folder from "VST2 Plugins". Projects that used the plugin will
+still open, but the plugin's sound/effect will be missing.
+
+PLEASE READ - IMPORTANT
+-----------------------
+
+* Third-party plugins are NOT supported by inMusic / Akai. If something goes wrong, inMusic
+  support cannot help with it.
+* A plugin runs inside the MPC software. A faulty plugin can make the MPC freeze or crash.
+  SAVE YOUR WORK OFTEN, and do not rely on third-party plugins for a live show until you
+  have tested them thoroughly.
+* Requires MPC OS 3.10.1 or later. Older MPC OS versions ignore this folder entirely;
+  update the MPC first (Preferences > Info shows the version).
+* External plugins must be enabled on the device: Preferences > Enhancements (Beta) >
+  Enable Enhancements and External Plugin Support. Until both are on, the plugin stays hidden.
+* If the MPC crashes or the plugin never appears, remove the folder from "VST2 Plugins"
+  and restart the MPC.
+
+More information: https://github.com/inmusic-software/mpc-plugin-builder-sdk
+

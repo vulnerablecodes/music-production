@@ -1,0 +1,9 @@
+PASS speed index 1, reverse 0: frame pixels rotate 4.982 turns over 399 ticks (target 4.987)
+PASS speed index 1, reverse 1: frame pixels rotate -4.991 turns over 399 ticks (target -4.987)
+PASS speed index 0, reverse 0: frame pixels rotate 9.974 turns over 399 ticks (target 9.975)
+PASS speed index 0, reverse 1: frame pixels rotate -9.982 turns over 399 ticks (target -9.975)
+PASS speed index 2, reverse 0: frame pixels rotate 14.957 turns over 399 ticks (target 14.963)
+PASS speed index 2, reverse 1: frame pixels rotate -14.965 turns over 399 ticks (target -14.963)
+PASS speed index 3, reverse 0: frame pixels rotate 17.949 turns over 399 ticks (target 17.955)
+PASS speed index 3, reverse 1: frame pixels rotate -17.957 turns over 399 ticks (target -17.955)
+PASS: exact 5:10:15:18 closed-cycle speeds; native timer enabled; one pair per selection; no transport/audio telemetry gating; bypass/Brake/Speed-off hide motion
