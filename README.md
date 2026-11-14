@@ -1,10 +1,10 @@
 # Vintage Military Radio — FIELD / CIPHER Chrome
 
-**v1.0.11** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
+**v1.0.12** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
 
 ![Animated showcase of all eight effects](media/vintage-military-radio-eight-effects.gif)
 
-v1.0.11 test package prepared; release publication pending device test. · [MP4 showcase](media/vintage-military-radio-eight-effects.mp4)
+v1.0.12 test package prepared; release publication pending device test. · [MP4 showcase](media/vintage-military-radio-eight-effects.mp4)
 
 Original olive canvas and polished chrome artwork, ivory keys, amber indicators and animated reels. Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter operate independently. Select an effect title to show its settings; its ivory ON/OFF switch enables or disables it; HOLD changes latching/momentary behavior. NOISE and MIX use horizontal faders. Cipher barrels are decorative. The silent animation demonstrates UI assets, not a recording from MPC hardware.
 
@@ -18,13 +18,16 @@ Vintage Military Radio uses the distinct UID `VMR8` and binary filenames `vintag
 
 ## Verification and source
 
-ARM32, ARM64 and native builds completed. SDK validation reports zero errors or warnings; the native host simulator passed 20 checks. Device testing confirms separate effect discovery in v1.0.8. The v1.0.11 short-folder skin lookup remains pending physical MPC testing.
+ARM32, ARM64 and native builds completed. SDK validation reports zero errors or warnings; the native host simulator passed 20 checks. Device testing confirms separate effect discovery in v1.0.8. The v1.0.12 short-folder skin lookup remains pending physical MPC testing.
 
 The source-and-both-architectures release includes the SDK framework/tools, generated skins, source, verification logs and revision history. Its project is under `Source/mpc-plugin-builder-sdk/plugins/Vintage Military Radio`. Use the SDK build tools to build native, run `make_chrome_skin.py`, then build all targets and run `release.py`. This repository keeps the editable project source and master artwork; generated installable assets are in the release.
 
 
-## v1.0.11 chrome performance screen
 
-The approved chrome / olive canvas skin is retained. Enlarged effect circuits use matching ivory switches with explicit ON/OFF states and tap-to-enable/disable captions. Nameplates select Rotor Settings; an amber outline marks the edited circuit while independent LEDs show active effects. Rotor Settings use matching ivory/chrome choice controls with readable option names. Noise and Mix faders are compact beneath the recorder.
+## v1.0.12 controls and animation fixes
 
-Native UI-clock reel animation is independent of audio processing and host repaint notifications. This decorative motion is not an audio speed/transport meter. Native/ARM32/ARM64 builds passed; simulator 20 checks, SDK validator 0 errors/warnings, and 16 mode/HOLD touch-layout scenarios passed. Physical MPC testing of this layout and animation is pending. The simple Vintage Military Radio folder and VMR8 identity are retained. No new catalog PR submitted.
+The chrome/canvas layout and enlarged circuit panel are retained. All eight effects now use metal toggle switches: UP = ON, DOWN = OFF, with state labels and amber lamps. Nameplates select the circuit's Rotor Settings independently of its enable state.
+
+Noise, Mix, Bypass and reel sprite frames now exactly match their native control sizes, fixing clipping caused by MPC drawing sprites without scaling. Noise/Mix frames are 320x42, Bypass 225x48, and reel frames 64x64.
+
+Animation uses a host-notified UI worker, with a normal motor rate when Speed is off. Native no-audio testing confirms continuous frame updates, bypass, suspend/resume and clean worker teardown. Audio simulation passed 20 checks, SDK validation reports 0 errors/warnings, and 16 mode/HOLD touch-layout scenarios plus all main-screen sprite dimensions pass. Physical MPC confirmation remains pending. No catalog PR submitted.

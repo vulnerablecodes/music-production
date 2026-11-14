@@ -1,1 +1,1 @@
-Native/ARM32/ARM64 built. SDK validation and simulator reports enclosed. Explicit effect flags and category checked. Physical MPC effects-list behavior pending.
+v1.0.12: native/ARM32/ARM64 built; host simulator passed; SDK validation passed; all 16 mode/HOLD touch-layout checks passed. Exact-size sprite frames and metal toggle orientation checked; animation idle/bypass/resume/teardown passed. Physical MPC test pending.

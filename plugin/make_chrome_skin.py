@@ -80,7 +80,7 @@ def txt(x,y,s,size=18,col='#eee3bf'):
  a.text((x,y),s,font=n['font'](size,True),fill=col,anchor='mm')
 txt(949,83,'EFFECT CIRCUITS',16)
 for y,s in [(348,'NOISE'),(446,'MIX')]:txt(194,y,s,18)
-txt(500,513,'TAP A NAME TO EDIT',11);txt(500,529,'IVORY SWITCH = ON / OFF',10)
+txt(500,513,'TAP A NAME TO EDIT',11);txt(500,529,'UP = ON / DOWN = OFF',10)
 (D/'deck.png').write_bytes(b'')
 base.save(D/'deck.png')
 # New nameplates and switches are derived from the approved chrome/ivory assets.
@@ -94,12 +94,26 @@ for mode,name in enumerate(full):
   n['text'](d,(146,20),f'{mode+1:02d} / {name}',18,'#ffdf91' if on else '#eee3bf',True)
   if on:d.rounded_rectangle((2,2,289,37),6,outline='#ffd080',width=2)
   im.save(D/f'circuit_name{mode}_{"on" if on else "off"}.png')
-for on in [0,1]:
- im=pad.copy();d=ImageDraw.Draw(im)
- d.rounded_rectangle((15,10,276,46),5,fill='#efc46f' if on else '#eee0bb',outline='#e7a646' if on else '#b1a17d',width=1)
- n['text'](d,(146,22),'ON' if on else 'OFF',20,'#292713',True)
- n['text'](d,(146,39),'TAP TO DISABLE' if on else 'TAP TO ENABLE',10,'#493c23',True)
- im.save(D/f'circuit_power_{"on" if on else "off"}.png')
+def metal_switch(w,h,on,caption):
+ im=Image.new('RGBA',(w,h));d=ImageDraw.Draw(im)
+ d.rounded_rectangle((1,1,w-2,h-2),10,fill='#142014',outline='#e2e0cb',width=2)
+ d.rounded_rectangle((4,4,w-5,h-5),8,outline='#615f4b',width=2)
+ # Actual metal toggle: UP is enabled, DOWN is disabled.
+ cx=48 if w>250 else 37;cy=h//2
+ d.ellipse((cx-17,cy-17,cx+17,cy+17),fill='#161b16',outline='#dddccc',width=2)
+ d.regular_polygon((cx,cy,12),6,rotation=30,fill='#969c93',outline='#ecebd9',width=2)
+ d.ellipse((cx-7,cy-7,cx+7,cy+7),fill='#333e37',outline='#f4f0da',width=2)
+ tip=cy-18 if on else cy+18
+ d.line((cx+2,cy+2,cx+2,tip+2),fill='#080b08',width=12)
+ for dx,col in [(-4,'#7b827e'),(-2,'#e7ebe3'),(0,'#fafbed'),(2,'#9ca49c'),(4,'#515d56')]:d.line((cx+dx,cy,cx+dx,tip),fill=col,width=2)
+ d.ellipse((cx-7,tip-4,cx+7,tip+4),fill='#e3e6dd',outline='#69746e',width=1)
+ # Amber lamp and readable state are separate from view selection.
+ lx=w-22;d.ellipse((lx-5,cy-5,lx+5,cy+5),fill='#ffd078' if on else '#2c3528',outline='#9c8b60')
+ n['text'](d,((cx+w-24)//2,cy),caption,18 if w>250 else 16,'#ffdb96' if on else '#c6cbb8',True)
+ for x in [12,w-13]:
+  d.ellipse((x-3,cy-3,x+3,cy+3),fill='#b8bbae',outline='#535d52');d.line((x-2,cy+1,x+2,cy-1),fill='#303a30')
+ return im
+for on in [0,1]:metal_switch(292,58,on,'ON' if on else 'OFF').save(D/f'circuit_power_{"on" if on else "off"}.png')
 for on in [0,1]:
  im=Image.new('RGBA',(292,6));ImageDraw.Draw(im).rounded_rectangle((2,1,289,4),2,fill='#ffc65f' if on else '#191c10');im.save(D/f'circuit_led_{on}.png')
 for on in [0,1]:
@@ -131,19 +145,25 @@ for mode,name in enumerate(full):
   data=g.button_data('circuit_power_on.png','circuit_power_off.png',1,1)
   if not hold:put(data,'gestureBehaviour','Hold')
   E.append(entry('Enable '+name,'Button',data,f'{x} {y+52} 292 58',f'Parameter {5+mode}' if hold else f'ResetOnGestureEnd/Parameter {5+mode}',[f'IndexedEnabling/{hold}/2/Parameter 4']))
+# Generate exact native frame sizes: MPC crops sprites; it does not rescale them.
+source_fader=fader
+fader=Image.new('RGBA',(320,42*127))
+for frame in range(127):fader.paste(source_fader.crop((0,frame*78,307,(frame+1)*78)).resize((320,42),Image.Resampling.LANCZOS),(0,frame*42))
+fader.save(D/'deck_fader.png')
+for on in [0,1]:metal_switch(225,48,on,'BYPASS').save(D/f'bypass_{"on" if on else "off"}.png')
 # Compact Noise/Mix; original chrome fader sprites, original bindings.
 for y,idx in [(366,1),(464,2)]:
  E.append(entry('Master horizontal fader','Knob',{'version':3,'knobType':'FilmStrip','filmStrip':'deck_fader.png','numFrames':127,'invert':False,'dragOrientation':'Horizontal','handleName':'Data'},f'34 {y} 320 42',f'Parameter {idx}'))
  E.append(label('',f'130 {y+44} 128 22',14,'ffeee3bf',param=f'WithSuffix[%]/Parameter {idx}'))
 for name,idx,asset,bounds in [('Bypass',3,'bypass','30 556 225 48'),('Hold',4,'hold','398 556 200 48')]:E.append(entry(name,'Button',g.button_data(asset+'_on.png',asset+'_off.png',1,1),bounds,f'Parameter {idx}'))
-# Native UI-clock reels retain the reliable v1.0.10 mechanism and chrome appearance.
+# Exact-size host-notified reel strips; worker supplies continuous phase without audio processing.
 for side in range(2):
- disk=art.crop((128+side*189,184,220+side*189,276)).convert('RGBA');mask=Image.new('L',(92,92));ImageDraw.Draw(mask).ellipse((2,2,89,89),fill=255);disk.putalpha(mask)
+ disk=art.crop((128+side*189,184,220+side*189,276)).convert('RGBA');mask=Image.new('L',(92,92));ImageDraw.Draw(mask).ellipse((2,2,89,89),fill=255);disk.putalpha(mask);disk=disk.resize((64,64),Image.Resampling.LANCZOS)
  for rev in [0,1]:
-  strip=Image.new('RGBA',(92,92*64))
-  for frame in range(64):strip.alpha_composite(disk.rotate((1 if rev else -1)*frame*360/64,resample=Image.Resampling.BICUBIC),(0,frame*92))
+  strip=Image.new('RGBA',(64,64*64))
+  for frame in range(64):strip.alpha_composite(disk.rotate(-frame*360/64,resample=Image.Resampling.BICUBIC),(0,frame*64))
   asset=f'polished_reel_{side}_{rev}.png';strip.save(D/asset)
-  E.append(entry('Native UI clock reel','Image',{'version':2,'imageType':'FilmStrip','colour':'0','image':asset,'numFrames':64,'handleName':'Data','animated':True},f'{98+side*132} 165 64 64','Parameter 27',[f'IndexedEnabling/{rev}/2/Parameter 8'],focus='No'))
+  E.append(entry('Native UI clock reel','Image',{'version':2,'imageType':'FilmStrip','colour':'0','image':asset,'numFrames':64,'handleName':'Data','animated':False},f'{98+side*132} 165 64 64','Parameter 27',[f'IndexedEnabling/{rev}/2/Parameter 8'],focus='No'))
 main=get(get(T,'pageData'),'tabs')[0];put(main,'componentDefinition',g.component_definition([],E,'ff263122'));put(main,'qlinkBoundsData',['650 100 598 236','650 352 598 236','30 340 324 264','378 94 246 444'])
 (D/'TUI.json').write_text(g.dump_json(T)+'\n')
 for mode in range(8):
@@ -155,8 +175,8 @@ for mode in range(8):
  for x,y,asset,j in positions.get(mode,[]):im.alpha_composite(Image.open(D/f'{asset}_{"on" if j==(2 if mode==6 else 3 if mode==7 else 0) else "off"}.png'),(x,y))
  if mode==2:n['text'](d,(501,245),'NO EXTRA SETTINGS',14,'#eee3bf')
  for y,frame,caption in [(366,0,'0%'),(464,126,'100%')]:
-  im.alpha_composite(fader.crop((0,frame*78,307,(frame+1)*78)).resize((320,42)),(34,y));n['text'](d,(194,y+55),caption,14,'#eee3bf')
- for side in range(2):im.alpha_composite(Image.open(D/f'polished_reel_{side}_0.png').crop((0,0,92,92)).resize((64,64)),(98+side*132,165))
+  im.alpha_composite(fader.crop((0,frame*42,320,(frame+1)*42)),(34,y));n['text'](d,(194,y+55),caption,14,'#eee3bf')
+ for side in range(2):im.alpha_composite(Image.open(D/f'polished_reel_{side}_0.png').crop((0,0,64,64)),(98+side*132,165))
  im.alpha_composite(Image.open(D/'bypass_off.png').resize((225,48)),(30,556));im.alpha_composite(Image.open(D/'hold_on.png').resize((200,48)),(398,556))
  im.convert('RGB').save(P/'Previews'/f'{mode+1}-{n["names"][mode].lower()}.png')
  if mode==0:im.convert('RGB').save(P/'UI-preview.png')

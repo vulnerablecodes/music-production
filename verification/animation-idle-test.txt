@@ -1,0 +1,4 @@
+PASS default Speed OFF: 10 distinct idle frames; 13 host notifications, without calling processReplacing
+PASS bypass: animation continues
+PASS suspend/resume: animation continues
+PASS close: worker joined, no callbacks after teardown

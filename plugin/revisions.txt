@@ -1,3 +1,11 @@
+VINTAGE MILITARY RADIO — v1.0.12
+VERSION 1.0.12
+Prepared: 2026-11-14T21:34:48+00:00
+- Replaced all eight ivory enable buttons with metal UP=ON / DOWN=OFF toggle switches and readable state lamps.
+- Exact-size Noise/Mix 320x42 frame assets, Bypass 225x48 and reels 64x64 fix MPC native-size sprite cropping.
+- Restored host-notified UI worker; normal tape motor now runs at idle with Speed off, instead of zero. Speed/Reverse/Brake affect the worker outside bypass. No UI host callbacks in the audio process loop.
+- UID VMR8, parameter IDs/order and chrome/canvas layout retained. Physical MPC verification pending.
+
 VINTAGE MILITARY RADIO — v1.0.11
 VERSION 1.0.11
 Prepared: 2026-11-14T21:23:32+00:00
