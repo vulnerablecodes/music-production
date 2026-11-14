@@ -1,4 +1,4 @@
-# Vintage Military Radio v1.0.13
+# Vintage Military Radio v1.0.14
 
 Eight stereo tape-performance effects with the olive canvas / polished chrome FIELD / CIPHER interface. Vintage Military Radio is a separate plugin identity (VMR8) and can coexist with Crazy Cassette 88 (TW0p).
 
@@ -24,7 +24,12 @@ The short install folder uses MPC's documented name-only skin lookup fallback. M
 - Adjust readable, matching ivory/chrome setting buttons in the central bay. More parameters remain on CHARACTER/EXTRAS tabs.
 - UP is ON and DOWN is OFF. HOLD on latches the circuit switches; HOLD off makes them momentary.
 - Noise and Mix use compact horizontal faders below the recorder.
-The tape reels use a host-notified UI worker independent of audio processing. Normal tape motion runs with Speed off; Speed/Reverse/Brake affect visual motor motion. It is not a measured transport or audio speed meter. Physical MPC testing of v1.0.13 is pending.
+The tape reels use a host-notified UI worker independent of audio processing. Normal tape motion runs with Speed off; Speed/Reverse/Brake affect visual motor motion. It is not a measured transport or audio speed meter. Physical MPC testing of v1.0.14 is pending.
 
 ## Chrome switches and reel refresh
 Effect switches have larger reflective chrome levers, collars and amber state jewels. UP is ON, DOWN is OFF. Bypass and HOLD use the same finish. Reel phase is displayed through mouse-disabled native filmstrip controls and a native transport value label, to subscribe to MPC parameter refreshes. Desktop clock checks do not prove device repaint behavior; MPC animation testing is pending.
+
+## Vinyl Crackle
+The dedicated Vinyl Crackle slider adds procedural record clicks and short filtered crackles independently of tape Noise. Default is 0%. Mix blends the wet signal and Bypass returns the dry signal; Mute also silences crackle. No audio samples or downloads are required.
+
+Radio Static and White Noise have main-page sliders. SOUNDS exposes Tape, Vinyl, Radio, White, Brown and Mains Hum levels plus 50/60 Hz mains selection. All new layers default to zero, follow Mix/Mute/Bypass, and synthesize locally without audio samples. Rotary switch pointers up indicate ON; down indicates OFF.

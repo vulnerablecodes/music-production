@@ -1,5 +1,5 @@
 {
-  "name": "Vintage Military Radio", "vendor": "Tropix R!X Crazy Jungle Sounds", "uid": "VMR8", "uidInt": 1447907896, "version": 1008,
+  "name": "Vintage Military Radio", "vendor": "Tropix R!X Crazy Jungle Sounds", "uid": "VMR8", "uidInt": 1447907896, "version": 1014,
   "isInstrument": false, "numInputs": 2, "numOutputs": 2, "numPrograms": 8,
   "programs": ["Clean", "Dusty Deck", "Half Speed", "Quarter Dream", "Jungle Crunch", "Reverse Dub", "Flutter Reel", "Stutter 16"],
   "params": [
@@ -30,6 +30,12 @@
     {"index": 24, "id": null, "name": "Edge Fade", "label": "ms", "display": "4.0", "default": 0.157895, "automatable": true, "kind": "float", "choices": []},
     {"index": 25, "id": null, "name": "Mode View", "label": "", "display": "Speed", "default": 0.0, "automatable": true, "kind": "choice", "choices": ["Speed", "Sat", "Mute", "Reverse", "Warble", "Lo-Fi", "Brake", "Stutter"]},
     {"index": 26, "id": null, "name": "Repeat Wear", "label": "%", "display": "10", "default": 0.1, "automatable": true, "kind": "int", "choices": []},
-    {"index": 27, "id": null, "name": "Reel Phase", "label": "", "display": "UI 000", "default": 0.0, "automatable": false, "kind": "float", "choices": []}
+    {"index": 27, "id": null, "name": "Reel Phase", "label": "", "display": "TRANSPORT |", "default": 0.0, "automatable": false, "kind": "float", "choices": []},
+    {"index": 28, "id": null, "name": "Vinyl Crackle", "label": "%", "display": "0", "default": 0.0, "automatable": true, "kind": "int", "choices": []},
+    {"index": 29, "id": null, "name": "Radio Static", "label": "%", "display": "0", "default": 0.0, "automatable": true, "kind": "int", "choices": []},
+    {"index": 30, "id": null, "name": "White Noise", "label": "%", "display": "0", "default": 0.0, "automatable": true, "kind": "int", "choices": []},
+    {"index": 31, "id": null, "name": "Brown Noise", "label": "%", "display": "0", "default": 0.0, "automatable": true, "kind": "int", "choices": []},
+    {"index": 32, "id": null, "name": "Mains Hum", "label": "%", "display": "0", "default": 0.0, "automatable": true, "kind": "int", "choices": []},
+    {"index": 33, "id": null, "name": "Mains Frequency", "label": "", "display": "60 Hz", "default": 1.0, "automatable": true, "kind": "choice", "choices": ["50 Hz", "60 Hz"]}
   ]
 }

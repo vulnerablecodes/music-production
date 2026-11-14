@@ -68,20 +68,20 @@ for side,cx in enumerate([174,363]):
 from PIL import ImageOps
 T=n['T']
 art=base.copy();canvas=art.crop((35,426,100,438))
-for y in range(72,610,12):
+for y in range(16,610,12):
  for x in range(20,1260,65):base.paste(canvas,(x,y))
-base.paste(art.crop((1260,72,1280,628)),(1260,72))
+base.paste(art.crop((1260,16,1280,628)),(1260,16))
 base.paste(art.crop((0,610,1280,628)),(0,610))
 # Original chrome recorder and brass settings enclosure, retained at new sizes.
-base.paste(art.crop((22,82,510,406)).resize((340,226),Image.Resampling.LANCZOS),(24,94))
-base.paste(art.crop((521,82,755,406)).resize((246,444),Image.Resampling.LANCZOS),(378,94))
+base.paste(art.crop((22,82,510,406)).resize((340,226),Image.Resampling.LANCZOS),(24,26))
+base.paste(art.crop((521,82,755,406)).resize((246,512),Image.Resampling.LANCZOS),(378,26))
 a=ImageDraw.Draw(base)
 def txt(x,y,s,size=18,col='#eee3bf'):
  a.text((x,y),s,font=n['font'](size,True),fill=col,anchor='mm')
-txt(949,83,'EFFECT CIRCUITS',16)
-for y,s in [(348,'NOISE'),(446,'MIX')]:txt(194,y,s,18)
+txt(949,20,'EFFECT CIRCUITS',16)
+for y,s in [(266,'TAPE NOISE'),(318,'VINYL CRACKLE'),(370,'RADIO STATIC'),(422,'WHITE NOISE'),(474,'MIX')]:txt(165,y,s,14)
 txt(500,513,'TAP A NAME TO EDIT',11);txt(500,529,'UP = ON / DOWN = OFF',10)
-a.rounded_rectangle((80,288,310,311),4,fill='#182416',outline='#515a35')
+a.rounded_rectangle((80,220,310,243),4,fill='#182416',outline='#515a35')
 (D/'deck.png').write_bytes(b'')
 base.save(D/'deck.png')
 # New nameplates and switches are derived from the approved chrome/ivory assets.
@@ -122,23 +122,22 @@ def metal_switch(w,h,on,caption):
  rounded((1,1,w-2,h-2),11,'#080d0b');rounded((2,2,w-3,h-3),10,'#d8e4df');rounded((4,4,w-5,h-5),9,'#3b4d49');rounded((5,5,w-6,h-6),8,'#101c15',outline='#bec8a8')
  for y in range(8,h-8):
   c=24+int(7*(1-y/h));d.line(box((10,y,w-11,y)),fill=(c,c+12,c+1))
- cx=57 if w>250 else 42;cy=h/2;R=24 if h>=60 else 20
- # Cast shadow, steel washer, knurled hex nut and dark pivot socket.
- ellipse((cx-R-2,cy-R+3,cx+R+4,cy+R+7),'#070b08')
- metal((cx-R,cy-R,cx+R,cy+R),vertical=True)
- ellipse((cx-R+3,cy-R+3,cx+R-3,cy+R-3),'#24302a',outline='#d4e4d7')
- metal((cx-R+5,cy-R+5,cx+R-5,cy+R-5),'hex')
- for angle in range(0,360,30):
-  a=math.radians(angle);x=cx+(R-6)*math.cos(a);y=cy+(R-6)*math.sin(a)
-  d.line(box((x-1,y-1,x+1,y+1)),fill='#697b7a',width=S)
- ellipse((cx-10,cy-10,cx+10,cy+10),'#09100e',outline='#d3e5e0')
- # Larger cylindrical toggle, with a bright rolled rim and rounded cap.
- throw=22 if h>=60 else 17;tip=cy-throw if on else cy+throw
- top=min(cy,tip);bottom=max(cy,tip)
- rounded((cx-6+4,top+4,cx+9+4,bottom+7),7,'#060a06')
- metal((cx-8,top-2,cx+8,bottom+3),'capsule')
- metal((cx-11,tip-6,cx+11,tip+6),vertical=True)
- d.arc(box((cx-10,tip-5,cx+10,tip+5)),190,335,fill='#ffffff',width=S)
+ cx=62 if w>250 else 42;cy=h/2;R=34 if h>=76 else 27
+ ellipse((cx-R-3,cy-R+3,cx+R+4,cy+R+6),'#030704')
+ metal((cx-R-2,cy-R-2,cx+R+2,cy+R+2),vertical=True)
+ ellipse((cx-R+1,cy-R+1,cx+R-1,cy+R-1),'#12201b',outline='#d6e5db')
+ # Knurled cylindrical rim catches alternating hard reflections.
+ metal((cx-R+3,cy-R+3,cx+R-3,cy+R-3))
+ for angle in range(0,360,12):
+  a=math.radians(angle);r=R-4
+  d.line(box((cx+(r-5)*math.cos(a),cy+(r-5)*math.sin(a),cx+r*math.cos(a),cy+r*math.sin(a))),fill='#243d42' if angle%24 else '#faffed',width=S)
+ metal((cx-R+10,cy-R+10,cx+R-10,cy+R-10),vertical=True)
+ ellipse((cx-R+12,cy-R+12,cx+R-12,cy+R-12),None,outline='#bdcfc9')
+ # Pronounced engraved pointer: twelve o'clock ON, six o'clock OFF.
+ direction=-1 if on else 1
+ d.line(box((cx,cy+direction*4,cx,cy+direction*(R-14))),fill='#07110c',width=5*S)
+ d.line(box((cx-1,cy+direction*4,cx-1,cy+direction*(R-14))),fill='#ffe2a0' if on else '#bdc9bd',width=2*S)
+ ellipse((cx-3,cy-3,cx+3,cy+3),'#172a29',outline='#edf6ec')
  # Recessed amber jewel and engraved state legend.
  lx=w-27;ellipse((lx-8,cy-8,lx+8,cy+8),'#090e0b');metal((lx-7,cy-7,lx+7,cy+7),vertical=True)
  ellipse((lx-5,cy-5,lx+5,cy+5),'#ffc56b' if on else '#29372c');ellipse((lx-3,cy-4,lx,cy-1),'#fff4c1' if on else '#53604c')
@@ -148,7 +147,7 @@ def metal_switch(w,h,on,caption):
  for x in [14,w-14]:
   metal((x-4,cy-4,x+4,cy+4));d.line(box((x-2,cy+1,x+2,cy-1)),fill='#23332d',width=S)
  return im.resize((w,h),Image.Resampling.LANCZOS)
-for on in [0,1]:metal_switch(292,66,on,'ON' if on else 'OFF').save(D/f'circuit_power_{"on" if on else "off"}.png')
+for on in [0,1]:metal_switch(292,80,on,'ON' if on else 'OFF').save(D/f'circuit_power_{"on" if on else "off"}.png')
 for on in [0,1]:
  im=Image.new('RGBA',(292,6));ImageDraw.Draw(im).rounded_rectangle((2,1,289,4),2,fill='#ffc65f' if on else '#191c10');im.save(D/f'circuit_led_{on}.png')
 for on in [0,1]:
@@ -161,38 +160,38 @@ E=[entry('Panel','Image',{'version':2,'imageType':'Regular','colour':'0','image'
 positions={}
 for mode,name in enumerate(full):
  inv=[f'IndexedEnabling/{mode}/8/Parameter 25']
- E.append(label(name,'392 145 218 32',19,'ffffd58a',invalid=inv))
- if mode==2:E.append(label('MUTE HAS NO','394 228 214 30',16,'ffeee3bf',invalid=inv));E.append(label('EXTRA SETTINGS','394 263 214 30',16,'ffeee3bf',invalid=inv))
+ E.append(label(name,'392 77 218 32',19,'ffffd58a',invalid=inv))
+ if mode==2:E.append(label('MUTE HAS NO','394 160 214 30',16,'ffeee3bf',invalid=inv));E.append(label('EXTRA SETTINGS','394 195 214 30',16,'ffeee3bf',invalid=inv))
  if mode in options:
   idx,opts=options[mode]
   for j,caption in enumerate(opts):
-   x=394+j%2*112;y=190+j//2*60;asset=f'polished_option_{mode}_{j}'
+   x=394+j%2*112;y=122+j//2*72;asset=f'polished_option_{mode}_{j}'
    for on in [0,1]:
     im=pad.resize((102,50),Image.Resampling.LANCZOS);d=ImageDraw.Draw(im)
     d.rounded_rectangle((6,8,95,41),4,fill='#efc46f' if on else '#eee0bb',outline='#ffdc89' if on else '#ac9d77',width=2)
     n['text'](d,(51,25),caption,14 if len(caption)>6 else 17,'#302b1d',True);im.save(D/f'{asset}_{"on" if on else "off"}.png')
    E.append(entry(name+' setting '+caption,'Button',g.button_data(asset+'_on.png',asset+'_off.png',j,len(opts)),f'{x} {y} 102 50',f'Parameter {idx}',inv));positions.setdefault(mode,[]).append((x,y,asset,j))
 for mode,name in enumerate(full):
- x=650+mode%2*306;y=100+mode//2*126
+ x=650+mode%2*306;y=34+mode//2*140
  E.append(entry('Select '+name,'Button',g.button_data(f'circuit_name{mode}_on.png',f'circuit_name{mode}_off.png',mode,8),f'{x} {y} 292 40','Parameter 25'))
  E.append(entry('Active '+name,'Indicator',{'version':1,'onImage':'circuit_led_1.png','offImage':'circuit_led_0.png','indicatorId':1,'numIndicatorsInGroup':1,'handleName':'Data'},f'{x} {y+43} 292 6',f'Parameter {5+mode}',focus='No'))
  for hold in [0,1]:
   data=g.button_data('circuit_power_on.png','circuit_power_off.png',1,1)
   if not hold:put(data,'gestureBehaviour','Hold')
-  E.append(entry('Enable '+name,'Button',data,f'{x} {y+50} 292 66',f'Parameter {5+mode}' if hold else f'ResetOnGestureEnd/Parameter {5+mode}',[f'IndexedEnabling/{hold}/2/Parameter 4']))
+  E.append(entry('Enable '+name,'Button',data,f'{x} {y+50} 292 80',f'Parameter {5+mode}' if hold else f'ResetOnGestureEnd/Parameter {5+mode}',[f'IndexedEnabling/{hold}/2/Parameter 4']))
 # Generate exact native frame sizes: MPC crops sprites; it does not rescale them.
 source_fader=fader
-fader=Image.new('RGBA',(320,42*127))
-for frame in range(127):fader.paste(source_fader.crop((0,frame*78,307,(frame+1)*78)).resize((320,42),Image.Resampling.LANCZOS),(0,frame*42))
+fader=Image.new('RGBA',(320,34*127))
+for frame in range(127):fader.paste(source_fader.crop((0,frame*78,307,(frame+1)*78)).resize((320,34),Image.Resampling.LANCZOS),(0,frame*34))
 fader.save(D/'deck_fader.png')
 for on in [0,1]:
- metal_switch(225,56,on,'BYPASS').save(D/f'bypass_{"on" if on else "off"}.png')
- metal_switch(200,56,on,'HOLD').save(D/f'hold_{"on" if on else "off"}.png')
+ metal_switch(225,64,on,'BYPASS').save(D/f'bypass_{"on" if on else "off"}.png')
+ metal_switch(200,64,on,'HOLD').save(D/f'hold_{"on" if on else "off"}.png')
 # Compact Noise/Mix; original chrome fader sprites, original bindings.
-for y,idx in [(366,1),(464,2)]:
- E.append(entry('Master horizontal fader','Knob',{'version':3,'knobType':'FilmStrip','filmStrip':'deck_fader.png','numFrames':127,'invert':False,'dragOrientation':'Horizontal','handleName':'Data'},f'34 {y} 320 42',f'Parameter {idx}'))
- E.append(label('',f'130 {y+44} 128 22',14,'ffeee3bf',param=f'WithSuffix[%]/Parameter {idx}'))
-for name,idx,asset,bounds in [('Bypass',3,'bypass','30 548 225 56'),('Hold',4,'hold','398 548 200 56')]:E.append(entry(name,'Button',g.button_data(asset+'_on.png',asset+'_off.png',1,1),bounds,f'Parameter {idx}'))
+for y,idx in [(278,1),(330,28),(382,29),(434,30),(486,2)]:
+ E.append(entry('Master horizontal fader','Knob',{'version':3,'knobType':'FilmStrip','filmStrip':'deck_fader.png','numFrames':127,'invert':False,'dragOrientation':'Horizontal','handleName':'Data'},f'34 {y} 320 34',f'Parameter {idx}'))
+ E.append(label('',f'286 {y-20} 65 18',14,'ffeee3bf',param=f'WithSuffix[%]/Parameter {idx}'))
+for name,idx,asset,bounds in [('Bypass',3,'bypass','30 540 225 64'),('Hold',4,'hold','398 540 200 64')]:E.append(entry(name,'Button',g.button_data(asset+'_on.png',asset+'_off.png',1,1),bounds,f'Parameter {idx}'))
 # Exact-size host-notified reel strips; worker supplies continuous phase without audio processing.
 for side in range(2):
  disk=art.crop((128+side*189,184,220+side*189,276)).convert('RGBA');mask=Image.new('L',(92,92));ImageDraw.Draw(mask).ellipse((2,2,89,89),fill=255);disk.putalpha(mask);disk=disk.resize((64,64),Image.Resampling.LANCZOS)
@@ -203,24 +202,54 @@ for side in range(2):
  definition=g.component_definition([], [inner], '00000000', ignore_mouse=True)
  defs=get(get(get(T,'pageData'),'componentDefinitions'),'localComponentDefinitions')
  defs.append(g.Obj([('key',f'MotorDisplay{side}'),('value',definition)]))
- E.append(entry('Reel motor display',f'MotorDisplay{side}',{'version':1,'handleName':'Data'},f'{98+side*132} 165 64 64','Parameter 27',focus='No'))
+ E.append(entry('Reel motor display',f'MotorDisplay{side}',{'version':1,'handleName':'Data'},f'{98+side*132} 97 64 64','Parameter 27',focus='No'))
 # A visible Value label subscribes to the same cached model as standard MPC controls.
-E.append(label('', '90 292 210 16',10,'ffd0c89f',param='Parameter 27'))
-main=get(get(T,'pageData'),'tabs')[0];put(main,'componentDefinition',g.component_definition([],E,'ff263122'));put(main,'qlinkBoundsData',['650 100 598 236','650 352 598 236','30 340 324 264','378 94 246 444'])
+E.append(label('', '90 224 210 16',10,'ffd0c89f',param='Parameter 27'))
+main=get(get(T,'pageData'),'tabs')[0];put(main,'componentDefinition',g.component_definition([],E,'ff263122'));put(main,'qlinkBoundsData',['650 34 598 276','650 314 598 276','30 280 324 324','378 26 246 512'])
+# SOUNDS page: six independent noise sources with large native sliders.
+texture=Image.new('RGB',(1280,628),'#21291a')
+for yy in range(0,628,12):
+ for xx in range(0,1280,65):texture.paste(canvas,(xx,yy))
+back=ImageDraw.Draw(texture)
+for row in range(3):
+ for col in range(2):
+  xx=32+col*622;yy=16+row*200
+  back.rounded_rectangle((xx,yy,xx+590,yy+180),12,fill='#182316',outline='#d1d2b5',width=3)
+texture.save(D/'textures.png')
+wide=Image.new('RGBA',(548,54*127))
+for frame in range(127):wide.paste(source_fader.crop((0,frame*78,307,(frame+1)*78)).resize((548,54),Image.Resampling.LANCZOS),(0,frame*54))
+wide.save(D/'texture_fader.png')
+S=[entry('Texture panel','Image',{'version':2,'imageType':'Regular','colour':'0','image':'textures.png'},'0 0 1280 628',focus='No')]
+textures=[(1,'TAPE NOISE','Smooth tape hiss'),(28,'VINYL CRACKLE','Record clicks and short crackles'),(29,'RADIO STATIC','Band-limited receiver noise and bursts'),(30,'WHITE NOISE','Broadband noise bed'),(31,'BROWN NOISE','Low, warm noise texture'),(32,'MAINS HUM','Electrical hum with harmonics')]
+for j,(idx,title,helptext) in enumerate(textures):
+ xx=32+(j%2)*622;yy=16+(j//2)*200
+ S.append(label(title,f'{xx+16} {yy+14} 400 32',22,'ffffdda1'))
+ S.append(label('',f'{xx+460} {yy+14} 110 32',20,'ffeee4c2',param=f'WithSuffix[%]/Parameter {idx}'))
+ S.append(entry(title+' level','Knob',{'version':3,'knobType':'FilmStrip','filmStrip':'texture_fader.png','numFrames':127,'invert':False,'dragOrientation':'Horizontal','handleName':'Data'},f'{xx+21} {yy+58} 548 54',f'Parameter {idx}'))
+ if idx!=32:S.append(label(helptext,f'{xx+20} {yy+130} 550 30',17,'ffc4c9b0'))
+ else:
+  for hz in [0,1]:
+   asset=f'hum_{hz}'
+   for on in [0,1]:
+    im=pad.resize((130,44),Image.Resampling.LANCZOS);dr=ImageDraw.Draw(im);dr.rounded_rectangle((8,7,121,36),4,fill='#efc46f' if on else '#eee0bb');n['text'](dr,(65,22),'50 Hz' if hz==0 else '60 Hz',17,'#302b1d',True);im.save(D/f'{asset}_{"on" if on else "off"}.png')
+   S.append(entry('Mains frequency','Button',g.button_data(asset+'_on.png',asset+'_off.png',hz,2),f'{xx+21+hz*146} {yy+124} 130 44','Parameter 33'))
+tabs=get(get(T,'pageData'),'tabs')
+tabs.append(g.Obj([('version',1),('tabName','SOUNDS'),('fnKeyIndex',3),('fnKeySubIndex',0),('componentDefinition',g.component_definition([],S,'ff21291a')),('qlinkBoundsData',['32 16 590 180','654 16 590 180','32 216 590 380','654 216 590 380'])]))
+q=json.loads((D/'Q-Links.json').read_text());q['Screen Mode Q-Links']['map'].append({'Tab':4,'SubTab':1,'Bank Direction':'Row','Q-Links':{f'Q-Link {j+1}':idx for j,idx in enumerate([1,28,29,30,31,32,33,2,0,3,4,-1,-1,-1,-1,-1])}});(D/'Q-Links.json').write_text(json.dumps(q,indent=2))
 (D/'TUI.json').write_text(g.dump_json(T)+'\n')
 for mode in range(8):
  im=base.convert('RGBA');d=ImageDraw.Draw(im)
- n['text'](d,(501,161),full[mode],19,'#ffd58a',True)
- n['text'](d,(195,300),'TRANSPORT |',10,'#d0c89f',True)
+ n['text'](d,(501,93),full[mode],19,'#ffd58a',True)
+ n['text'](d,(195,232),'TRANSPORT |',10,'#d0c89f',True)
  for j in range(8):
-  x=650+j%2*306;y=100+j//2*126
+  x=650+j%2*306;y=34+j//2*140
   im.alpha_composite(Image.open(D/f'circuit_name{j}_{"on" if j==mode else "off"}.png'),(x,y));im.alpha_composite(Image.open(D/f'circuit_led_{1 if j==mode else 0}.png'),(x,y+43));im.alpha_composite(Image.open(D/f'circuit_power_{"on" if j==mode else "off"}.png'),(x,y+50))
  for x,y,asset,j in positions.get(mode,[]):im.alpha_composite(Image.open(D/f'{asset}_{"on" if j==(2 if mode==6 else 3 if mode==7 else 0) else "off"}.png'),(x,y))
  if mode==2:n['text'](d,(501,245),'NO EXTRA SETTINGS',14,'#eee3bf')
- for y,frame,caption in [(366,0,'0%'),(464,126,'100%')]:
-  im.alpha_composite(fader.crop((0,frame*42,320,(frame+1)*42)),(34,y));n['text'](d,(194,y+55),caption,14,'#eee3bf')
- for side in range(2):im.alpha_composite(Image.open(D/f'polished_reel_{side}_0.png').crop((0,0,64,64)),(98+side*132,165))
- im.alpha_composite(Image.open(D/'bypass_off.png'),(30,548));im.alpha_composite(Image.open(D/'hold_on.png'),(398,548))
+ for y,frame,caption in [(278,0,'0%'),(330,0,'0%'),(382,0,'0%'),(434,0,'0%'),(486,126,'100%')]:
+  im.alpha_composite(fader.crop((0,frame*34,320,(frame+1)*34)),(34,y));n['text'](d,(318,y-12),caption,14,'#eee3bf')
+ for side in range(2):im.alpha_composite(Image.open(D/f'polished_reel_{side}_0.png').crop((0,0,64,64)),(98+side*132,97))
+ im.alpha_composite(Image.open(D/'bypass_off.png'),(30,540));im.alpha_composite(Image.open(D/'hold_on.png'),(398,540))
  im.convert('RGB').save(P/'Previews'/f'{mode+1}-{n["names"][mode].lower()}.png')
  if mode==0:im.convert('RGB').save(P/'UI-preview.png')
 contact=Image.new('RGB',(1280,1360),'#10170f')

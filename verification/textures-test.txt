@@ -1,0 +1,6 @@
+PASS source 28: rms 0.0152537 peak 0.186947
+PASS source 29: rms 0.0404289 peak 0.179965
+PASS source 30: rms 0.0631561 peak 0.128004
+PASS source 31: rms 0.0154425 peak 0.0690262
+PASS source 32: rms 0.0401923 peak 0.0764989
+PASS all new layers: zero defaults; independent output; dry Mix, Mute and Bypass; stacked bounds

@@ -14,7 +14,7 @@
 namespace d = mpc::dsp;
 enum { Out, Noise, Mix, Bypass, Hold, Speed, Sat, Mute, Reverse, Warble, Lofi,
        Brake, Stutter, SpeedMode, SatMode, WarbleMode, LofiMode, BrakeMode,
-       StutterMode, Drive, Depth, RevTime, Tone, NoiseTone, Edge, View, Wear, ReelPhase, Count };
+       StutterMode, Drive, Depth, RevTime, Tone, NoiseTone, Edge, View, Wear, ReelPhase, Vinyl, Radio, White, Brown, Hum, HumHz, Count };
 class VintageMilitaryRadio : public mpc::Plugin {
 public:
  VintageMilitaryRadio():Plugin(description()) {
@@ -43,6 +43,12 @@ public:
   addParam(mpc::floatParam("repeat_wear","Repeat Wear",0,100,10,"%",0));
   // Host-polled UI telemetry: updated without allocation or host automation callbacks.
   auto reel=mpc::floatParam("reel_phase","Reel Phase",0,1,0);reel.automatable=false;addParam(reel);
+  addParam(mpc::floatParam("vinyl_crackle","Vinyl Crackle",0,100,0,"%",0));
+  addParam(mpc::floatParam("radio_static","Radio Static",0,100,0,"%",0));
+  addParam(mpc::floatParam("white_noise","White Noise",0,100,0,"%",0));
+  addParam(mpc::floatParam("brown_noise","Brown Noise",0,100,0,"%",0));
+  addParam(mpc::floatParam("mains_hum","Mains Hum",0,100,0,"%",0));
+  addParam(mpc::choiceParam("mains_frequency","Mains Frequency",{"50 Hz","60 Hz"},1));
   preset("Clean",{});
   preset("Dusty Deck",{{Sat,1},{Warble,1},{Lofi,1},{Noise,8},{LofiMode,1},{Mix,80}});
   preset("Half Speed",{{Speed,1},{Sat,1},{Drive,20}});
@@ -72,6 +78,7 @@ public:
  void reset() override {
   for(auto& stage:delay_) for(auto& ch:stage) ch.reset();
   phase_=wow_=flutter_=revAge_=brakeAge_=stutAge_=0;
+  crackle_[0]=crackle_[1]=crackleLp_[0]=crackleLp_[1]=0;radioFast_[0]=radioFast_[1]=radioSlow_[0]=radioSlow_[1]=brown_[0]=brown_[1]=0;radioBurst_=1;humPhase_=0;
   rng_=0x88cc7711; held_[0]=held_[1]=lp_[0]=lp_[1]=hp_[0]=hp_[1]=0;
   hiss_[0]=hiss_[1]=dcIn_[0]=dcIn_[1]=dcOut_[0]=dcOut_[1]=0;
   for(int k=0;k<Count;++k) smooth_[k].snap(k==Out?d::dbToGain(get(k)):get(k));
@@ -102,6 +109,10 @@ public:
   const float wowDepth[]={.2f,.45f,.8f,1.2f,1.8f,2.6f,4};
   const float flutterDepth[]={.02f,.04f,.06f,.1f,.18f,.3f,.5f};
   const float grain=sr_*.12f;
+  const float crackleDecay=std::exp(-1.f/(sr_*.0012f));
+  const float brownLeak=std::exp(-d::kTwoPi*8.f/sr_);
+  const float radioFast=1-std::exp(-d::kTwoPi*7000.f/sr_),radioSlow=1-std::exp(-d::kTwoPi*450.f/sr_);
+  const float crackleFilter=1-std::exp(-d::kTwoPi*4200.f/sr_);
   if(v[Reverse]>.5f && (!was_[3] || int(v[RevTime])!=lastReverse_)) {revAge_=0;reverseSpan_=std::min(sr_*8,beat*reverseBeats[int(v[RevTime])]);}
   if(v[Brake]>.5f && !was_[6]) {brakeAge_=0;brakeDelay_=1;}
   if(v[Stutter]>.5f && (!was_[7] || int(v[StutterMode])!=lastStutter_)) {stutAge_=0;loops_=0;wearState_[0]=wearState_[1]=0;stutterSpan_=std::max(8.f,std::min(sr_*8,beat*repeats[int(v[StutterMode])]));}
@@ -112,6 +123,11 @@ public:
    float a[2]={0,0};for(int c=0;c<2;++c) if(ctx.inputs && c<ctx.numInputs && ctx.inputs[c]) a[c]=ctx.inputs[c][i];
    float en[8];for(int k=0;k<8;++k) en[k]=smooth_[Speed+k].process();
    const float mix=smooth_[Mix].process()*.01f, ns=smooth_[Noise].process()*.0008f;
+   const float vinyl=smooth_[Vinyl].process()*.01f;
+   const float radio=smooth_[Radio].process()*.01f,white=smooth_[White].process()*.01f,brown=smooth_[Brown].process()*.01f,hum=smooth_[Hum].process()*.01f;
+   if(radio>0 && (sampleHold_%1024)==0)radioBurst_=.15f+.85f*std::fabs(random());
+   if(hum>0)humPhase_=d::wrapPhase(humPhase_+(int(v[HumHz])==0?50.f:60.f)/sr_);
+   const float humSignal=hum*(.06f*d::fastSin01(humPhase_)+.02f*d::fastSin01(d::wrapPhase(humPhase_*2))+.008f*d::fastSin01(d::wrapPhase(humPhase_*3)));
    const float by=smooth_[Bypass].process(), gain=smooth_[Out].process();
    const float drive=smooth_[Drive].process()*.01f, depth=smooth_[Depth].process()*.01f;
    speedRatio_+=.002f*((v[Speed]>.5f?speeds[sm]:1.f)-speedRatio_);
@@ -168,6 +184,18 @@ public:
     x+=en[5]*(lo-x);
     hiss_[c]+=hissCoef*(random()-hiss_[c]);
     x+=hiss_[c]*(ns+(en[5]*(lm==0?.0008f:.0002f)));
+    // Independent procedural vinyl clicks: sparse bipolar impulses with short filtered tails.
+    // At zero this consumes no random samples and adds no signal.
+    if(vinyl>0.f){
+     const float trigger=(random()+1.f)*.5f;
+     if(trigger<(5.f+30.f*vinyl)/sr_)crackle_[c]=mpc::clamp(crackle_[c]+random()*.5f,-.8f,.8f);
+     crackle_[c]*=crackleDecay;crackleLp_[c]+=crackleFilter*(crackle_[c]-crackleLp_[c]);
+     x+=crackleLp_[c]*vinyl*.4f;
+    }else{crackle_[c]=crackleLp_[c]=0.f;}
+    if(radio>0){const float rn=random();radioFast_[c]+=radioFast*(rn-radioFast_[c]);radioSlow_[c]+=radioSlow*(rn-radioSlow_[c]);x+=(radioFast_[c]-radioSlow_[c])*radio*radioBurst_*.2f;}
+    if(white>0)x+=random()*white*.12f;
+    if(brown>0){brown_[c]=brownLeak*brown_[c]+random()*.012f;x+=brown_[c]*brown*.25f;}else brown_[c]=0;
+    x+=humSignal;
     x*=1-en[2];
     // Tone is only applied to wet audio. DC blocker removes asymmetric drive DC.
     tone_[c]+=toneCoef*(x-tone_[c]); x=tone_[c];
@@ -224,13 +252,15 @@ private:
  }
  pthread_t uiThread_{};std::atomic<bool> uiStop_{false},uiStarted_{false};
  std::atomic<unsigned> uiTicks_{0};std::atomic<float> uiBpm_{120.f};
- static mpc::PluginInfo description(){mpc::PluginInfo i;i.name="Vintage Military Radio";i.vendor="Tropix R!X Crazy Jungle Sounds";i.uniqueId=MPC_FOURCC('V','M','R','8');i.version=1013;i.isInstrument=false;i.numInputs=2;i.numOutputs=2;i.wantsMidi=false;i.tailSamples=0;return i;}
+ static mpc::PluginInfo description(){mpc::PluginInfo i;i.name="Vintage Military Radio";i.vendor="Tropix R!X Crazy Jungle Sounds";i.uniqueId=MPC_FOURCC('V','M','R','8');i.version=1014;i.isInstrument=false;i.numInputs=2;i.numOutputs=2;i.wantsMidi=false;i.tailSamples=0;return i;}
  void preset(const char* name,std::initializer_list<std::pair<int,float>> edits){std::vector<float> v;for(int k=0;k<numParams();++k)v.push_back(param(k).def);for(auto e:edits)v[e.first]=e.second;addProgram(name,v);}
  static float edgeWindow(float pos,float len,float edge){edge=std::min(edge,len*.2f);return std::min(1.f,std::min(pos/edge,(len-pos)/edge));}
  float random(){rng_^=rng_<<13;rng_^=rng_>>17;rng_^=rng_<<5;return float(int32_t(rng_))*(1.f/2147483648.f);}
  std::array<std::array<d::DelayLine,2>,5> delay_;
  std::array<d::Smoother,Count> smooth_;
  float sr_=44100,phase_=0,wow_=0,flutter_=0,revAge_=0,reverseSpan_=2,brakeAge_=0,brakeDelay_=1,stutAge_=0,stutterSpan_=2,speedRatio_=1;
+ float radioFast_[2]={},radioSlow_[2]={},brown_[2]={},radioBurst_=1,humPhase_=0;
+ float crackle_[2]={},crackleLp_[2]={};
  float held_[2]={},lp_[2]={},hp_[2]={},hiss_[2]={},tone_[2]={},dcIn_[2]={},dcOut_[2]={};
  float reelPhase_=0;
  float drift_=0,driftTarget_=0,wearState_[2]={};int loops_=0,lastStutter_=-1,lastReverse_=-1;

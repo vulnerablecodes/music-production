@@ -15,7 +15,7 @@ OK     manufacturer matches the binary (Tropix R!X Crazy Jungle Sounds)
 OK     kind matches the binary (effect)
 OK     numInputs matches the binary (2)
 OK     numOutputs matches the binary (2)
-OK     TUI.json: all parameter handles are within 0..27
+OK     TUI.json: all parameter handles are within 0..33
 OK     TUI.json: image bypass_off.png present
 OK     TUI.json: image bypass_on.png present
 OK     TUI.json: image circuit_led_0.png present
@@ -43,6 +43,10 @@ OK     TUI.json: image deck_fader.png present
 OK     TUI.json: image fader_h_uni.png present
 OK     TUI.json: image hold_off.png present
 OK     TUI.json: image hold_on.png present
+OK     TUI.json: image hum_0_off.png present
+OK     TUI.json: image hum_0_on.png present
+OK     TUI.json: image hum_1_off.png present
+OK     TUI.json: image hum_1_on.png present
 OK     TUI.json: image knob_uni.png present
 OK     TUI.json: image polished_option_0_0_off.png present
 OK     TUI.json: image polished_option_0_0_on.png present
@@ -128,9 +132,11 @@ OK     TUI.json: image seg3_off.png present
 OK     TUI.json: image seg3_on.png present
 OK     TUI.json: image seg4_off.png present
 OK     TUI.json: image seg4_on.png present
+OK     TUI.json: image texture_fader.png present
+OK     TUI.json: image textures.png present
 OK     TUI.json: image toggle_off.png present
 OK     TUI.json: image toggle_on.png present
-OK     TUI.json: 3 tabs
-OK     Q-Links.json: 3 tab maps, all values in range
+OK     TUI.json: 4 tabs
+OK     Q-Links.json: 4 tab maps, all values in range
 OK     version.xml uiversion 0.1.0.0
 0 errors, 0 warnings

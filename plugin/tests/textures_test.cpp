@@ -1,0 +1,8 @@
+#include "../src/VintageMilitaryRadio.cpp"
+#include <iostream>
+#include <stdexcept>
+#include <cmath>
+void req(bool x,const char*m){if(!x)throw std::runtime_error(m);}
+int main(){try{VintageMilitaryRadio p;req(p.numParams()==34,"parameter count");req(Vinyl==28&&Radio==29&&HumHz==33,"appended parameter indices");p.prepare(48000,128);float in[128]={},a[128],b[128];const float*ins[]={in,in};float*outs[]={a,b};mpc::ProcessContext c;c.inputs=ins;c.outputs=outs;c.numInputs=c.numOutputs=2;c.numFrames=128;c.sampleRate=48000;auto defaults=[&](){for(int k=0;k<p.numParams();++k)p.set(k,p.param(k).def);};
+for(int source:{Vinyl,Radio,White,Brown,Hum}){defaults();req(p.get(source)==0,"new layer defaults to nonzero");p.reset();p.process(c);for(float x:a)req(x==0,"default layer adds audio");p.set(source,100);p.reset();double e=0;float peak=0;for(int n=0;n<1500;++n){p.process(c);for(float x:a){req(std::isfinite(x),"nonfinite texture");e+=x*x;peak=std::max(peak,std::abs(x));}}req(e>1e-5&&peak<.8,"silent or excessive texture");std::cout<<"PASS source "<<source<<": rms "<<std::sqrt(e/(1500*128))<<" peak "<<peak<<"\n";for(int control:{Mix,Bypass,Mute}){p.set(Mix,100);p.set(Bypass,0);p.set(Mute,0);p.set(control,control==Mix?0:1);p.reset();p.process(c);for(float x:a)req(std::abs(x)<1e-7,"texture ignores Mix, Bypass or Mute");}}
+defaults();for(int k:{Vinyl,Radio,White,Brown,Hum})p.set(k,100);p.reset();for(int n=0;n<1000;++n){p.process(c);for(float x:a)req(std::isfinite(x)&&std::abs(x)<1,"stacked textures unbounded");}std::cout<<"PASS all new layers: zero defaults; independent output; dry Mix, Mute and Bypass; stacked bounds\n";return 0;}catch(const std::exception&e){std::cerr<<e.what()<<"\n";return 1;}}

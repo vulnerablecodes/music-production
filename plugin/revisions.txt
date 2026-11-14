@@ -1,3 +1,13 @@
+VINTAGE MILITARY RADIO — v1.0.14
+VERSION 1.0.14
+Prepared: 2026-11-14T22:06:44+00:00
+- Added Vinyl Crackle, Radio Static, White Noise, Brown Noise and Mains Hum layers, all default 0. Hum has 50/60 Hz selection. Procedural synthesis only; no samples or network.
+- Appended parameters 28-33; all previous indices and UID VMR8 retained. All new sound layers follow wet Mix, Mute and Bypass.
+- Removed top branding band; enlarged heavy-chrome two-position rotary knobs to 80 px and Bypass/Hold to 64 px. Five main faders (Tape, Vinyl, Radio, White, Mix) use exact 320x34 frames; SOUNDS provides six large source sliders and 50/60 Hz selection. Chrome/canvas finish and reel-control refresh bindings retained.
+- Validation: native/ARM32/ARM64 built; 20 host checks; 16 mode/HOLD overlap scenarios; exact sprite dimensions on PERFORM and SOUNDS; five texture DSP tests plus dry/mute/bypass and stacked level checks passed.
+- Catalog packaging/media repack: 2026-11-14T22:12:33+00:00; binary/UI assets unchanged.
+- Desktop/audio/layout tests recorded with release; physical MPC animation and new slider verification pending.
+
 VINTAGE MILITARY RADIO — v1.0.13
 VERSION 1.0.13
 Prepared: 2026-11-14T21:44:32+00:00
