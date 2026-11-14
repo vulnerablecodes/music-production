@@ -1,9 +1,5 @@
-Unzip Crazy Cassette 88.zip and add to USB drive/VST2 Plugins/
-
-Example:
-USB drive/
-=> VST2 Plugins/
-    => Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/.
+Unzip Crazy Cassette 88.zip and add to :
+USB drive/VST2 Plugins/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/.
 
 # Music Production
 
