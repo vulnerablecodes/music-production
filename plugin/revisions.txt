@@ -1,3 +1,11 @@
+VINTAGE MILITARY RADIO — v1.0.9
+VERSION 1.0.9
+Prepared: 2026-11-14T21:10:18+00:00
+- Distribution install folder simplified to Vintage Military Radio.
+- Uses documented name-only skin lookup fallback; manufacturer and VMR8 UID retained.
+- Binary version updated; DSP and parameter layout unchanged.
+- Native host and package checks recorded with release. Physical MPC skin discovery pending user test.
+
 VINTAGE MILITARY RADIO — v1.0.8
 VERSION 1.0.8
 Release prepared: 2026-11-14T20:52:03+00:00

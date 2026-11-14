@@ -7,9 +7,14 @@ version=json.loads((p/'plugin.json').read_text())['version']
 subprocess.run([sys.executable,str(sdk/'tools/package.py'),str(p)],check=True)
 out=p/'dist'/f'Vintage-Military-Radio-{version}-source-and-both-architectures.zip'
 folder=p/'build'/'Tropix R!X Crazy Jungle Sounds - VST - Vintage Military Radio'
+for arch, excluded in [('aarch64','vintage-military-radio-arm32.so'),('armv7','vintage-military-radio-arm64.so')]:
+ with zipfile.ZipFile(p/'dist'/f'Vintage-Military-Radio-{version}-mpc-{arch}.zip','w',zipfile.ZIP_DEFLATED) as z:
+  for f in folder.rglob('*'):
+   if f.is_file() and f.name != excluded:z.write(f,'Vintage Military Radio/'+str(f.relative_to(folder)))
+  for name in ['README.md','revisions.txt']:z.write(p/name,name)
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
  for f in folder.rglob('*'):
-  if f.is_file():z.write(f,folder.name+'/'+str(f.relative_to(folder)))
+  if f.is_file():z.write(f,'Vintage Military Radio/'+str(f.relative_to(folder)))
  for f in p.rglob('*'):
   if f.is_file() and not any(a in {'build','dist','__pycache__'} for a in f.relative_to(p).parts):z.write(f,'Source/mpc-plugin-builder-sdk/plugins/Vintage Military Radio/'+str(f.relative_to(p)))
  for root in ['framework','tools','docs','schemas','ui-kit']:
@@ -24,3 +29,5 @@ with zipfile.ZipFile(out) as z:
  assert z.testzip() is None
  assert len(z.namelist())==len(set(z.namelist()))
 print(out)
+
+(p/'dist/SHA256SUMS.txt').write_text(''.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+f.name+'\n' for f in sorted((p/'dist').glob(f'*{version}*.zip'))))
