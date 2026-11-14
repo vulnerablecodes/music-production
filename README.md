@@ -1,4 +1,4 @@
-> **Publication status:** Unzip Crazy Cassette 88.zip and add to USB drive/VST2 Plugins/
+> Unzip Crazy Cassette 88.zip and add to USB drive/VST2 Plugins/
 
 Example:
 USB drive/
