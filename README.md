@@ -1,4 +1,4 @@
-# Crazy Cassette 88 — FIELD / CIPHER Chrome
+# Vintage Military Radio — FIELD / CIPHER Chrome
 
 **v1.0.7** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
 
