@@ -1,3 +1,13 @@
+VINTAGE MILITARY RADIO — v1.0.11
+VERSION 1.0.11
+Prepared: 2026-11-14T21:23:32+00:00
+- Restored approved chrome / olive canvas appearance; no flat replacement skin.
+- Enlarged effect circuits to 292 px nameplates and ivory switches; reduced Noise/Mix fader area.
+- Names select settings; independent ON/OFF switches explicitly say tap to enable/disable. Amber outline shows selected circuit and LEDs show active circuits.
+- Rotor settings use readable names on matching ivory/chrome buttons with 10 px horizontal and vertical gaps.
+- Validation: native/ARM32/ARM64 built; host simulator 20 passed; SDK validator 0 errors / 0 warnings; 16 mode/HOLD touch-layout scenarios passed.
+- Native UI-clock tape animation retained; UID VMR8 and parameter order unchanged. Physical MPC validation pending.
+
 VINTAGE MILITARY RADIO — v1.0.10
 VERSION 1.0.10
 Prepared: 2026-11-14T21:14:46+00:00

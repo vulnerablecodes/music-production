@@ -1,4 +1,4 @@
-# Vintage Military Radio v1.0.10
+# Vintage Military Radio v1.0.11
 
 Eight stereo tape-performance effects with the olive canvas / polished chrome FIELD / CIPHER interface. Vintage Military Radio is a separate plugin identity (VMR8) and can coexist with Crazy Cassette 88 (TW0p).
 
@@ -19,7 +19,9 @@ Source is built with the inMusic MPC Plugin Builder SDK. To regenerate the skin,
 The short install folder uses MPC's documented name-only skin lookup fallback. Manufacturer credit remains in metadata. Physical device confirmation is pending.
 
 ## Performance workflow
-1. Select a large effect card. Its outline shows which circuit settings are displayed; small amber LEDs show active circuits.
-2. Adjust that circuit in the right settings bay.
-3. Press ENGAGE for the selected circuit. Other circuits keep their current state. LATCH on retains engagement; off is momentary.
-The tape reels use a continuous decorative native UI animation, independent of audio processing. They are not a transport or speed meter.
+- Tap a chrome effect nameplate to select its Rotor Settings. The amber outline marks the circuit being edited.
+- Tap its ivory ON/OFF switch to enable or disable that circuit. The switch label and amber LED show its actual state. Selecting a name never disables other effects.
+- Adjust readable, matching ivory/chrome setting buttons in the central bay. More parameters remain on CHARACTER/EXTRAS tabs.
+- HOLD on latches the circuit switches; HOLD off makes them momentary.
+- Noise and Mix use compact horizontal faders below the recorder.
+The tape reels use continuous decorative native UI animation independent of audio processing. They are not a transport or speed meter. Physical MPC testing of v1.0.11 is pending.

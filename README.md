@@ -1,12 +1,12 @@
 # Vintage Military Radio — FIELD / CIPHER Chrome
 
-**v1.0.10** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
+**v1.0.11** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
 
 ![Animated showcase of all eight effects](media/vintage-military-radio-eight-effects.gif)
 
-v1.0.10 test package prepared; release publication pending device test. · [MP4 showcase](media/vintage-military-radio-eight-effects.mp4)
+v1.0.11 test package prepared; release publication pending device test. · [MP4 showcase](media/vintage-military-radio-eight-effects.mp4)
 
-Original olive canvas and polished chrome artwork, ivory keys, amber indicators and animated reels. Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter operate independently. Select an effect title to show its settings; ENGAGE activates it; HOLD changes latching/momentary behavior. NOISE and MIX use horizontal faders. Cipher barrels are decorative. The silent animation demonstrates UI assets, not a recording from MPC hardware.
+Original olive canvas and polished chrome artwork, ivory keys, amber indicators and animated reels. Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter operate independently. Select an effect title to show its settings; its ivory ON/OFF switch enables or disables it; HOLD changes latching/momentary behavior. NOISE and MIX use horizontal faders. Cipher barrels are decorative. The silent animation demonstrates UI assets, not a recording from MPC hardware.
 
 ## Installation and the Effects tab
 
@@ -18,12 +18,13 @@ Vintage Military Radio uses the distinct UID `VMR8` and binary filenames `vintag
 
 ## Verification and source
 
-ARM32, ARM64 and native builds completed. SDK validation reports zero errors or warnings; the native host simulator passed 20 checks. Device testing confirms separate effect discovery in v1.0.8. The v1.0.10 short-folder skin lookup remains pending physical MPC testing.
+ARM32, ARM64 and native builds completed. SDK validation reports zero errors or warnings; the native host simulator passed 20 checks. Device testing confirms separate effect discovery in v1.0.8. The v1.0.11 short-folder skin lookup remains pending physical MPC testing.
 
 The source-and-both-architectures release includes the SDK framework/tools, generated skins, source, verification logs and revision history. Its project is under `Source/mpc-plugin-builder-sdk/plugins/Vintage Military Radio`. Use the SDK build tools to build native, run `make_chrome_skin.py`, then build all targets and run `release.py`. This repository keeps the editable project source and master artwork; generated installable assets are in the release.
 
-## v1.0.10 streamlined performance screen
 
-Eight generously spaced selection cards replace the crowded paired name/Engage pads. Select a circuit, adjust its contextual settings in the right bay, then use the single Engage control. Amber active LEDs remain independent of the selected-view outline. LATCH toggles retained or momentary engagement. Other circuits retain their current state.
+## v1.0.11 chrome performance screen
 
-Reels use MPC's native continuous UI animation clock, independent of audio processing and host parameter notifications. This is decorative motion, not an audio transport/speed meter. The simple Vintage Military Radio install folder and VMR8 UID are retained. Native/ARM32/ARM64 build, simulator and package checks pass; physical layout and animation testing is pending.
+The approved chrome / olive canvas skin is retained. Enlarged effect circuits use matching ivory switches with explicit ON/OFF states and tap-to-enable/disable captions. Nameplates select Rotor Settings; an amber outline marks the edited circuit while independent LEDs show active effects. Rotor Settings use matching ivory/chrome choice controls with readable option names. Noise and Mix faders are compact beneath the recorder.
+
+Native UI-clock reel animation is independent of audio processing and host repaint notifications. This decorative motion is not an audio speed/transport meter. Native/ARM32/ARM64 builds passed; simulator 20 checks, SDK validator 0 errors/warnings, and 16 mode/HOLD touch-layout scenarios passed. Physical MPC testing of this layout and animation is pending. The simple Vintage Military Radio folder and VMR8 identity are retained. No new catalog PR submitted.
