@@ -1,4 +1,9 @@
-> **Publication status:** Source, native skins, documentation and GIF/MP4 previews are published. Compiled ARM libraries, installer ZIPs and the WAV test output are pending automatic upload approval. The repository is not yet a complete installable download.
+> **Publication status:** Unzip Crazy Cassette 88.zip and add to USB drive/VST2 Plugins/
+
+Example:
+USB drive/
+└── VST2 Plugins/
+    └── Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/.
 
 # Music Production
 
