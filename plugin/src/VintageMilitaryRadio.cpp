@@ -252,7 +252,7 @@ private:
  }
  pthread_t uiThread_{};std::atomic<bool> uiStop_{false},uiStarted_{false};
  std::atomic<unsigned> uiTicks_{0};std::atomic<float> uiBpm_{120.f};
- static mpc::PluginInfo description(){mpc::PluginInfo i;i.name="Vintage Military Radio";i.vendor="Tropix R!X Crazy Jungle Sounds";i.uniqueId=MPC_FOURCC('V','M','R','8');i.version=1014;i.isInstrument=false;i.numInputs=2;i.numOutputs=2;i.wantsMidi=false;i.tailSamples=0;return i;}
+ static mpc::PluginInfo description(){mpc::PluginInfo i;i.name="Vintage Military Radio";i.vendor="Tropix R!X Crazy Jungle Sounds";i.uniqueId=MPC_FOURCC('V','M','R','8');i.version=1016;i.isInstrument=false;i.numInputs=2;i.numOutputs=2;i.wantsMidi=false;i.tailSamples=0;return i;}
  void preset(const char* name,std::initializer_list<std::pair<int,float>> edits){std::vector<float> v;for(int k=0;k<numParams();++k)v.push_back(param(k).def);for(auto e:edits)v[e.first]=e.second;addProgram(name,v);}
  static float edgeWindow(float pos,float len,float edge){edge=std::min(edge,len*.2f);return std::min(1.f,std::min(pos/edge,(len-pos)/edge));}
  float random(){rng_^=rng_<<13;rng_^=rng_>>17;rng_^=rng_<<5;return float(int32_t(rng_))*(1.f/2147483648.f);}
