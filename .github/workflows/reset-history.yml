@@ -28,3 +28,4 @@ jobs:
           git add -A
           git commit -m "Vintage Military Radio v1.0.8 initial source and showcase"
           git push --force-with-lease=refs/heads/main:$GITHUB_SHA origin HEAD:refs/heads/main
+          git push --force-with-lease=refs/tags/v1.0.8:a2e498e7671fdee42f38379cd47c2fb7e82e7f2a origin HEAD:refs/tags/v1.0.8
