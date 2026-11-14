@@ -1,5 +1,5 @@
 {
-  "name": "Vintage Military Radio", "vendor": "Tropix R!X Crazy Jungle Sounds", "uid": "VMR8", "uidInt": 1447907896, "version": 1014,
+  "name": "Vintage Military Radio", "vendor": "Tropix R!X Crazy Jungle Sounds", "uid": "VMR8", "uidInt": 1447907896, "version": 1016,
   "isInstrument": false, "numInputs": 2, "numOutputs": 2, "numPrograms": 8,
   "programs": ["Clean", "Dusty Deck", "Half Speed", "Quarter Dream", "Jungle Crunch", "Reverse Dub", "Flutter Reel", "Stutter 16"],
   "params": [

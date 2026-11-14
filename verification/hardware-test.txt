@@ -1,0 +1,1 @@
+2026-11-14: Owner report: "fully tested and working on mcp xl" for v1.0.16. MPC XL (Gen2), MPC OS 3.10.1 per session device context. No device CPU benchmark or Gen1/Force test recorded.
