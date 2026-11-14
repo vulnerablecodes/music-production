@@ -4,7 +4,7 @@ host_sim: testing /workspace/scratch/1076eb9dd722/music-production/music/product
 == Load (MPC sequence) ==
 PASS  load: library opened and VSTPluginMain found
 PASS  AEffect: magic 'VstP', resvd2 == 0, object != NULL
-INFO  uid 'VMR8' (1447907896)  version 1012  flags 0x30  effect  2 in / 2 out  28 params  8 programs  chunks
+INFO  uid 'VMR8' (1447907896)  version 1013  flags 0x30  effect  2 in / 2 out  28 params  8 programs  chunks
 PASS  MPC load sequence: "Vintage Military Radio" by "Tropix R!X Crazy Jungle Sounds", effect, 8 program(s), first program "Clean"
 
 == Prepare ==
@@ -41,8 +41,8 @@ PASS  no clipping in the main pass (peak -5.35 dBFS)
 PASS  no denormals in the main pass
 
 == Check 6: timing ==
-INFO  block of 128 frames = 2.90 ms; processReplacing took on average 0.59% of that, worst block 22.32% (desktop CPU, for orientation only)
-PASS  timing: average 0.59% CPU per block
+INFO  block of 128 frames = 2.90 ms; processReplacing took on average 0.62% of that, worst block 53.62% (desktop CPU, for orientation only)
+PASS  timing: average 0.62% CPU per block
 
 == Host callbacks seen ==
 INFO  audioMasterGetTime 2168, Automate 1, UpdateDisplay 0, IOChanged 0, ProcessEvents 0 calls (0 MIDI events out)

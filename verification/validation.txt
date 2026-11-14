@@ -123,9 +123,7 @@ OK     TUI.json: image polished_option_7_7_on.png present
 OK     TUI.json: image polished_option_7_8_off.png present
 OK     TUI.json: image polished_option_7_8_on.png present
 OK     TUI.json: image polished_reel_0_0.png present
-OK     TUI.json: image polished_reel_0_1.png present
 OK     TUI.json: image polished_reel_1_0.png present
-OK     TUI.json: image polished_reel_1_1.png present
 OK     TUI.json: image seg3_off.png present
 OK     TUI.json: image seg3_on.png present
 OK     TUI.json: image seg4_off.png present
