@@ -1,8 +1,0 @@
-PASS mode 1: 4 buttons map to DSP parameter 13
-PASS mode 2: 3 buttons map to DSP parameter 14
-PASS mode 5: 7 buttons map to DSP parameter 15
-PASS mode 6: 8 buttons map to DSP parameter 16
-PASS mode 7: 4 buttons map to DSP parameter 17
-PASS mode 8: 8 buttons map to DSP parameter 18
-PASS: eight view selectors and cassette frames; independent LEDs; 16 latch/momentary bindings; globals; all controls within screen; 27 automatable controls and non-automatable reel telemetry
-PASS: two notified-phase reel bindings, no native auto-animation dependence, bound live counter

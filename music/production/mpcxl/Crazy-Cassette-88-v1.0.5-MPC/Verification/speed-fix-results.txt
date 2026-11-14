@@ -1,6 +1,0 @@
-PASS: Speed remains engaged while UI-order indices 1,0,2,3 are selected live
-PASS 1 kHz input, setting index 1: measured 250.00 Hz; expected 250 Hz
-PASS 1 kHz input, setting index 0: measured 500.00 Hz; expected 500 Hz
-PASS 1 kHz input, setting index 2: measured 750.00 Hz; expected 750 Hz
-PASS 1 kHz input, setting index 3: measured 900.00 Hz; expected 900 Hz
-PASS: quarter/half/three-quarter/nine-tenths top-to-bottom; caption pixels in all eight Speed images; no overlapping Labels on Speed, mode name, Hold or engage pad

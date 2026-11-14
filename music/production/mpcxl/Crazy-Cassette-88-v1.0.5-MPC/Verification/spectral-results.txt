@@ -1,5 +1,0 @@
-PASS mode -1: 440.24 Hz, nominal 440 Hz (granular approximation)
-PASS mode 0: 223.37 Hz, nominal 220 Hz (granular approximation)
-PASS mode 1: 114.93 Hz, nominal 110 Hz (granular approximation)
-PASS mode 2: 331.80 Hz, nominal 330 Hz (granular approximation)
-PASS mode 3: 396.77 Hz, nominal 396 Hz (granular approximation)

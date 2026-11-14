@@ -1,6 +1,0 @@
-PASS host-cache animation speed index 1: 0.226621 rev/s, 29 notifications without screen taps
-PASS host-cache animation speed index 0: 0.453951 rev/s, 51 notifications without screen taps
-PASS host-cache animation speed index 2: 0.663181 rev/s, 50 notifications without screen taps
-PASS host-cache animation speed index 3: 0.814252 rev/s, 51 notifications without screen taps
-PASS: no UI gesture or transport required; callbacks only off audio thread; no UpdateDisplay; stationary when disabled
-PASS: worker joined before plugin closes; no use-after-close notification
