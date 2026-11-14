@@ -1,22 +1,25 @@
-Unzip Crazy Cassette 88.zip and add to :
-USB drive/VST2 Plugins/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/.
+# Crazy Cassette 88 — FIELD / CIPHER Chrome
 
-Tested on MPC XL version 3.10.1
+**v1.0.7** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
 
-# Music Production
+![Crazy Cassette 88 FIELD / CIPHER Chrome](media/crazy-cassette-88-v1.0.7.png)
 
-## 📼 Crazy Cassette 88
+[Download v1.0.7](https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.7)
 
-**Eight effects. One cassette playground.** A stereo cassette performance effect by **Tropix R!X Crazy Jungle Sounds** for MPC standalone.
+Original olive-drab canvas and polished-chrome artwork, ivory keys, amber activity indicators and animated tape reels. Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter can be engaged independently.
 
-![All eight effects](music/production/mpcxl/Crazy-Cassette-88-v1.0.5-MPC/media/all-eight-effects.gif)
+Choose an effect's name to display its settings; ENGAGE activates the effect. HOLD changes latching/momentary behavior. NOISE and MIX use horizontal faders. The four numbered cipher barrels are decorative.
 
-[Explore Crazy Cassette 88 →](music/production/mpcxl/Crazy-Cassette-88-v1.0.5-MPC/README.md)
+## Installation
 
-Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter. Version **1.0.5 LIVE REELS**, owner-tested on **MPC XL (Gen2), MPC OS 3.10.1**. Source, skins, test records and GIF/MP4 previews are published. Both ARM32 and ARM64 installers are available in the [v1.0.5 Release](https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.5). ARM32 remains hardware-untested.
+Use the ARM64 / aarch64 installer for Gen2, including MPC XL; use the ARM32 / armv7 installer for Gen1. Unzip and put the complete `Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88` folder inside `VST2 Plugins` on your drive.
 
-The animation cycles through all eight UI asset previews; it is not an on-device recording.
+Requires **MPC OS 3.10.1+** and **Preferences → Enhancements (Beta) → Enable Enhancements and External Plugin Support**.
 
-Requires **MPC OS 3.10.1+**, **Enable Enhancements** and **External Plugin Support** in Preferences → Enhancements (Beta).
+## Validation and source
 
-OpenMPC catalog submission: [PR #893](https://github.com/open-mpc/mpc-vst-plugins/pull/893) (awaiting maintainer review).
+v1.0.7 native, ARM32 and ARM64 builds pass SDK validation (0 errors, 0 warnings). Native host simulation: 20 passed, 0 warnings, 0 failures. **The new v1.0.7 skin has not yet been tested on physical MPC hardware.** Earlier owner testing on MPC XL applies to v1.0.5.
+
+The full FIELD-CIPHER-MPC release ZIP contains the editable source, generated artwork, skin renderer, previews, revision history and verification logs. Plugin UID and existing parameter IDs/order are preserved. The audio processing is unchanged apart from the version integer.
+
+Previous version files remain available as history; use v1.0.7 for the current design.
