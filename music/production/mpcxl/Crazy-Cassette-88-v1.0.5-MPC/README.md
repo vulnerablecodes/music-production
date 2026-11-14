@@ -1,4 +1,4 @@
-> **Publication status:** Source, native skins, documentation and GIF/MP4 previews are published. Compiled ARM libraries, installer ZIPs and the WAV test output are pending automatic upload approval. The repository is not yet a complete installable download.
+> **Downloads:** Both ARM32/Gen1 and ARM64/Gen2 installer ZIPs and checksums are available in the [v1.0.5 Release](https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.5). The complete SDK folder-copy ZIP is also at the repository root. Use those packages for installation; the expanded source tree does not contain standalone compiled libraries.
 
 <div align="center">
 
@@ -50,17 +50,17 @@ Version 1.0.5 adds explicit host notifications for continuous reel updates. SPEE
 3. Reconnect the drive or restart the MPC as needed. Choose **Crazy Cassette 88** under **External Plugins** in an insert-effect slot.
 4. Start with **Clean**, play audio through the insert, and engage a mode. Reverse and Stutter need preceding audio in their buffers.
 
-Native skins and installation instructions are included. The ARM32/ARM64 binary uploads remain pending approval; installation requires those libraries. This package is for MPC standalone; desktop AU/VST3 builds are not included.
+Native skins and installation instructions are included. Get the ARM32/ARM64 libraries from the release packages or complete root SDK ZIP. This package is for MPC standalone; desktop AU/VST3 builds are not included.
 
 ## Catalog release assets
 
-The prepared package includes separate OpenMPC installer ZIPs for Gen1 (`armv7`) and Gen2 (`aarch64`). Both passed the current catalog checker with nine advisory tall-image warnings each. Hardware verification applies to Gen2 only. The normal SDK folder-copy installation above remains available. The catalog entry and release assets are prepared; installer ZIP upload is pending approval. No catalog submission or GitHub release has been published.
+The prepared package includes separate OpenMPC installer ZIPs for Gen1 (`armv7`) and Gen2 (`aarch64`). Both passed the current catalog checker with nine advisory tall-image warnings each. Hardware verification applies to Gen2 only. The normal SDK folder-copy installation above remains available. The catalog entry and release assets are prepared; the installer ZIPs are published in the v1.0.5 Release and [OpenMPC PR #893](https://github.com/open-mpc/mpc-vst-plugins/pull/893) is open.
 
 ## Inside the package
 
 | Folder / file | Contents |
 |---|---|
-| Plugin folder | Native interface assets and metadata; compiled binaries pending upload |
+| Plugin folder | Native interface assets and metadata; compiled binaries are supplied in the release/root SDK ZIP |
 | `Source/` | SDK snapshot, plugin C++ source, skin generator and tests |
 | `Verification/` | Existing build, DSP, spectral, sanitizer and UI test records |
 | `Previews/` and `media/` | All eight interface views, animated GIF and MP4 |

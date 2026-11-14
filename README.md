@@ -13,8 +13,10 @@ Tested on MPC XL version 3.10.1
 
 [Explore Crazy Cassette 88 →](music/production/mpcxl/Crazy-Cassette-88-v1.0.5-MPC/README.md)
 
-Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter. Version **1.0.5 LIVE REELS**, owner-tested on **MPC XL (Gen2), MPC OS 3.10.1**. Source, skins, test records and GIF/MP4 previews are published; ARM32/ARM64 binary uploads are pending approval. ARM32 remains hardware-untested.
+Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter. Version **1.0.5 LIVE REELS**, owner-tested on **MPC XL (Gen2), MPC OS 3.10.1**. Source, skins, test records and GIF/MP4 previews are published. Both ARM32 and ARM64 installers are available in the [v1.0.5 Release](https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.5). ARM32 remains hardware-untested.
 
 The animation cycles through all eight UI asset previews; it is not an on-device recording.
 
 Requires **MPC OS 3.10.1+**, **Enable Enhancements** and **External Plugin Support** in Preferences → Enhancements (Beta).
+
+OpenMPC catalog submission: [PR #893](https://github.com/open-mpc/mpc-vst-plugins/pull/893) (awaiting maintainer review).

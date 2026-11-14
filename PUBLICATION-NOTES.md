@@ -1,17 +1,13 @@
 # Publication status
 
-Source, native skin assets, documentation, verification logs, GIF previews and MP4 are published. Automatic approval review blocked compiled ARM shared libraries and the audio test output. Installer ZIPs contain the held libraries and are also withheld. The library bytes match the original v1.0.5 user package; they are ARM/AArch64 ELF DYN shared libraries.
+Stable release: https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.5
 
-Pending files:
+OpenMPC catalog PR: https://github.com/open-mpc/mpc-vst-plugins/pull/893
 
-- `Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/VST/crazy-cassette-88-arm32.so`
-- `Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/VST/crazy-cassette-88-arm64.so`
-- `Verification/host-test-signal.wav`
-- `Releases/Crazy-Cassette-88-1.0.5-mpc-armv7.zip`
-- `Releases/Crazy-Cassette-88-1.0.5-mpc-aarch64.zip`
+The release supplies both ARMv7 and aarch64 installer ZIPs and SHA256SUMS.txt. Both passed the catalog checker with nine advisory tall-filmstrip warnings each. Live catalog portable-layout discovery passed with zero problems. The registry passed validation, and all 207 catalog tests passed locally. Upstream review/CI remains separate.
 
-Both installer ZIPs passed the OpenMPC catalog checker with nine advisory tall-image warnings each. Gen2 was owner-tested on MPC XL / OS 3.10.1; Gen1 is untested.
+The complete SDK folder-copy ZIP is at the repository root. Standalone .so files and the WAV test output are not in the expanded repository tree; install from the complete packages.
 
-After these uploads are allowed, publish a GitHub v1.0.5 release with both ZIPs and submit catalog/plugins/crazy-cassette-88.json to open-mpc/mpc-vst-plugins. No release or catalog PR has been submitted.
+Gen2 was owner-tested on MPC XL, MPC OS 3.10.1, on 2026-11-14. Gen1 remains hardware-untested. No hardware CPU benchmark is recorded.
 
-The new GIF and MP4 cycle through all eight effect views. They are UI asset previews without audio, not hardware footage. The legacy reel GIF is resized to 640 pixels wide, keeping all 100 frames and timings.
+The catalog entry uses the exact user-provided green Reverse-mode image, pinned to its source commit. The GIF and MP4 cycle through all eight UI asset views; these are previews, not on-device recordings.
