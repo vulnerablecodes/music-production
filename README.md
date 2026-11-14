@@ -1,6 +1,8 @@
 Unzip Crazy Cassette 88.zip and add to :
 USB drive/VST2 Plugins/Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88/.
 
+Tested on MPC XL version 3.10.1
+
 # Music Production
 
 ## 📼 Crazy Cassette 88
