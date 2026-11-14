@@ -1,3 +1,13 @@
+VINTAGE MILITARY RADIO — v1.0.10
+VERSION 1.0.10
+Prepared: 2026-11-14T21:14:46+00:00
+- Spacious 4x2 effect selector; separate contextual settings and selected-effect Engage control.
+- Full effect and option names; wide spaced targets, independent active LEDs and LATCH toggle.
+- Tape reels now use native UI animation; disabled host-notification animation worker. Reels are a decorative continuous UI clock, not transport or audio-rate telemetry.
+- Validation: native, ARM32 and ARM64 built; 20 host simulator checks passed; SDK validation 0 errors / 0 warnings; layout/native-clock binding checks passed.
+- UID VMR8 and all parameter IDs/order retained. Simple install folder retained.
+- v1.0.9 custom UI loading confirmed by owner on MPC; new layout and animation need device testing.
+
 VINTAGE MILITARY RADIO — v1.0.9
 VERSION 1.0.9
 Prepared: 2026-11-14T21:10:18+00:00

@@ -1,4 +1,4 @@
-# Vintage Military Radio v1.0.9
+# Vintage Military Radio v1.0.10
 
 Eight stereo tape-performance effects with the olive canvas / polished chrome FIELD / CIPHER interface. Vintage Military Radio is a separate plugin identity (VMR8) and can coexist with Crazy Cassette 88 (TW0p).
 
@@ -17,3 +17,9 @@ Select an effect title to show its settings; ENGAGE operates it; HOLD changes la
 Source is built with the inMusic MPC Plugin Builder SDK. To regenerate the skin, build native first, run make_chrome_skin.py, then build all targets. See verification logs and revisions.txt.
 
 The short install folder uses MPC's documented name-only skin lookup fallback. Manufacturer credit remains in metadata. Physical device confirmation is pending.
+
+## Performance workflow
+1. Select a large effect card. Its outline shows which circuit settings are displayed; small amber LEDs show active circuits.
+2. Adjust that circuit in the right settings bay.
+3. Press ENGAGE for the selected circuit. Other circuits keep their current state. LATCH on retains engagement; off is momentary.
+The tape reels use a continuous decorative native UI animation, independent of audio processing. They are not a transport or speed meter.
