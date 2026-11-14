@@ -1,33 +1,23 @@
 # Vintage Military Radio — FIELD / CIPHER Chrome
 
-**v1.0.7** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
+**v1.0.8** · Eight stereo tape effects by **Tropix R!X Crazy Jungle Sounds**.
 
-<p align="center">
-  <img src="media/crazy-cassette-88-eight-effects.gif" alt="Animated showcase cycling through all eight Crazy Cassette 88 effects" width="800">
-</p>
+![Animated showcase of all eight effects](media/vintage-military-radio-eight-effects.gif)
 
-**24-second looping showcase:** Speed → Saturation → Mute → Reverse → Warble → Lo-Fi → Brake → Stutter.
+[Download v1.0.8](https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.8) · [MP4 showcase](media/vintage-military-radio-eight-effects.mp4)
 
-[Watch/download the MP4](media/crazy-cassette-88-eight-effects.mp4) · [Open the looping GIF](media/crazy-cassette-88-eight-effects.gif)
+Original olive canvas and polished chrome artwork, ivory keys, amber indicators and animated reels. Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter operate independently. Select an effect title to show its settings; ENGAGE activates it; HOLD changes latching/momentary behavior. NOISE and MIX use horizontal faders. Cipher barrels are decorative. The silent animation demonstrates UI assets, not a recording from MPC hardware.
 
-This is a silent animation of the actual UI assets, not an audio demonstration or an on-device recording.
+## Installation and the Effects tab
 
-[Download v1.0.7](https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.7)
+Use MPC OS 3.10.1 or newer with Enhancements and External Plugin Support enabled. Extract the installer for your architecture and copy the entire `Tropix R!X Crazy Jungle Sounds - VST - Vintage Military Radio` folder directly into `VST2 Plugins` at the drive root.
 
-Original olive-drab canvas and polished-chrome artwork, ivory keys, amber activity indicators and animated tape reels. Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter can be engaged independently.
+Keep one installed copy of each plugin UID across connected drives. Remove earlier copies of the radio design installed under its old name. **Fully restart MPC after copying**, then select it from an audio track/program/mixer **insert FX** slot and the Effects / External Plugins browser.
 
-Choose an effect's name to display its settings; ENGAGE activates the effect. HOLD changes latching/momentary behavior. NOISE and MIX use horizontal faders. The four numbered cipher barrels are decorative.
+Vintage Military Radio uses the distinct UID `VMR8` and binary filenames `vintage-military-radio-arm32.so` / `vintage-military-radio-arm64.so`. Both manifest and binary explicitly identify a stereo effect, with no instrument or MIDI flag. A separately retained local plugin can coexist under its own UID.
 
-## Installation
+## Verification and source
 
-Use the ARM64 / aarch64 installer for Gen2, including MPC XL; use the ARM32 / armv7 installer for Gen1. Unzip and put the complete `Tropix R!X Crazy Jungle Sounds - VST - Crazy Cassette 88` folder inside `VST2 Plugins` on your drive.
+ARM32, ARM64 and native builds completed. SDK validation reports zero errors or warnings; the native host simulator passed 20 checks. Physical MPC browser discovery remains unverified; these checks do not establish that it appears on every device.
 
-Requires **MPC OS 3.10.1+** and **Preferences → Enhancements (Beta) → Enable Enhancements and External Plugin Support**.
-
-## Validation and source
-
-v1.0.7 native, ARM32 and ARM64 builds pass SDK validation (0 errors, 0 warnings). Native host simulation: 20 passed, 0 warnings, 0 failures. **The new v1.0.7 skin has not yet been tested on physical MPC hardware.**
-
-The full FIELD-CIPHER-MPC release ZIP contains the editable source, generated artwork, skin renderer, previews, revision history and verification logs. Plugin UID and existing parameter IDs/order are preserved. The audio processing is unchanged apart from the version integer.
-
-Use v1.0.7 for the current interface and packages. Historical version files have been removed from the default branch.
+The source-and-both-architectures release includes the SDK framework/tools, generated skins, source, verification logs and revision history. Its project is under `Source/mpc-plugin-builder-sdk/plugins/Vintage Military Radio`. Use the SDK build tools to build native, run `make_chrome_skin.py`, then build all targets and run `release.py`. This repository keeps the editable project source and master artwork; generated installable assets are in the release.

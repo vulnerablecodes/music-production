@@ -1,0 +1,140 @@
+Validating /workspace/scratch/1076eb9dd722/music-production/music/production/mpcxl/Crazy-Cassette-88-v1.0.7-MPC/Source/mpc-plugin-builder-sdk/plugins/Vintage Military Radio/build/Tropix R!X Crazy Jungle Sounds - VST - Vintage Military Radio
+OK     plugin.json: Vintage Military Radio by Tropix R!X Crazy Jungle Sounds (effect, uid VMR8)
+OK     folder name "Tropix R!X Crazy Jungle Sounds - VST - Vintage Military Radio"
+OK     file32: vintage-military-radio-arm32.so is a 32-bit ARM shared object
+OK     file32: needed libraries: libm.so.6, libc.so.6, ld-linux-armhf.so.3, libpthread.so.0, libdl.so.2
+OK     file32: max GLIBC requirement 2.27
+OK     file32: exports VSTPluginMain
+OK     file64: vintage-military-radio-arm64.so is a 64-bit AArch64 shared object
+OK     file64: needed libraries: libm.so.6, libc.so.6, libpthread.so.0, libdl.so.2
+OK     file64: max GLIBC requirement 2.27
+OK     file64: exports VSTPluginMain
+OK     uid matches the binary (VMR8)
+OK     name matches the binary (Vintage Military Radio)
+OK     manufacturer matches the binary (Tropix R!X Crazy Jungle Sounds)
+OK     kind matches the binary (effect)
+OK     numInputs matches the binary (2)
+OK     numOutputs matches the binary (2)
+OK     TUI.json: all parameter handles are within 0..27
+OK     TUI.json: image bypass_off.png present
+OK     TUI.json: image bypass_on.png present
+OK     TUI.json: image chrome_reel_0.png present
+OK     TUI.json: image chrome_reel_1.png present
+OK     TUI.json: image deck.png present
+OK     TUI.json: image deck_fader.png present
+OK     TUI.json: image fader_h_uni.png present
+OK     TUI.json: image hold_off.png present
+OK     TUI.json: image hold_on.png present
+OK     TUI.json: image knob_uni.png present
+OK     TUI.json: image led0_off.png present
+OK     TUI.json: image led0_on.png present
+OK     TUI.json: image led1_off.png present
+OK     TUI.json: image led1_on.png present
+OK     TUI.json: image led2_off.png present
+OK     TUI.json: image led2_on.png present
+OK     TUI.json: image led3_off.png present
+OK     TUI.json: image led3_on.png present
+OK     TUI.json: image led4_off.png present
+OK     TUI.json: image led4_on.png present
+OK     TUI.json: image led5_off.png present
+OK     TUI.json: image led5_on.png present
+OK     TUI.json: image led6_off.png present
+OK     TUI.json: image led6_on.png present
+OK     TUI.json: image led7_off.png present
+OK     TUI.json: image led7_on.png present
+OK     TUI.json: image name0_off.png present
+OK     TUI.json: image name0_on.png present
+OK     TUI.json: image name1_off.png present
+OK     TUI.json: image name1_on.png present
+OK     TUI.json: image name2_off.png present
+OK     TUI.json: image name2_on.png present
+OK     TUI.json: image name3_off.png present
+OK     TUI.json: image name3_on.png present
+OK     TUI.json: image name4_off.png present
+OK     TUI.json: image name4_on.png present
+OK     TUI.json: image name5_off.png present
+OK     TUI.json: image name5_on.png present
+OK     TUI.json: image name6_off.png present
+OK     TUI.json: image name6_on.png present
+OK     TUI.json: image name7_off.png present
+OK     TUI.json: image name7_on.png present
+OK     TUI.json: image pad_off.png present
+OK     TUI.json: image pad_on.png present
+OK     TUI.json: image seg3_off.png present
+OK     TUI.json: image seg3_on.png present
+OK     TUI.json: image seg4_off.png present
+OK     TUI.json: image seg4_on.png present
+OK     TUI.json: image small4_choice0_off.png present
+OK     TUI.json: image small4_choice0_on.png present
+OK     TUI.json: image small4_choice1_off.png present
+OK     TUI.json: image small4_choice1_on.png present
+OK     TUI.json: image small4_choice2_off.png present
+OK     TUI.json: image small4_choice2_on.png present
+OK     TUI.json: image small4_choice3_off.png present
+OK     TUI.json: image small4_choice3_on.png present
+OK     TUI.json: image small4_choice4_off.png present
+OK     TUI.json: image small4_choice4_on.png present
+OK     TUI.json: image small4_choice5_off.png present
+OK     TUI.json: image small4_choice5_on.png present
+OK     TUI.json: image small4_choice6_off.png present
+OK     TUI.json: image small4_choice6_on.png present
+OK     TUI.json: image small5_choice0_off.png present
+OK     TUI.json: image small5_choice0_on.png present
+OK     TUI.json: image small5_choice1_off.png present
+OK     TUI.json: image small5_choice1_on.png present
+OK     TUI.json: image small5_choice2_off.png present
+OK     TUI.json: image small5_choice2_on.png present
+OK     TUI.json: image small5_choice3_off.png present
+OK     TUI.json: image small5_choice3_on.png present
+OK     TUI.json: image small5_choice4_off.png present
+OK     TUI.json: image small5_choice4_on.png present
+OK     TUI.json: image small5_choice5_off.png present
+OK     TUI.json: image small5_choice5_on.png present
+OK     TUI.json: image small5_choice6_off.png present
+OK     TUI.json: image small5_choice6_on.png present
+OK     TUI.json: image small5_choice7_off.png present
+OK     TUI.json: image small5_choice7_on.png present
+OK     TUI.json: image small7_choice0_off.png present
+OK     TUI.json: image small7_choice0_on.png present
+OK     TUI.json: image small7_choice1_off.png present
+OK     TUI.json: image small7_choice1_on.png present
+OK     TUI.json: image small7_choice2_off.png present
+OK     TUI.json: image small7_choice2_on.png present
+OK     TUI.json: image small7_choice3_off.png present
+OK     TUI.json: image small7_choice3_on.png present
+OK     TUI.json: image small7_choice4_off.png present
+OK     TUI.json: image small7_choice4_on.png present
+OK     TUI.json: image small7_choice5_off.png present
+OK     TUI.json: image small7_choice5_on.png present
+OK     TUI.json: image small7_choice6_off.png present
+OK     TUI.json: image small7_choice6_on.png present
+OK     TUI.json: image small7_choice8_off.png present
+OK     TUI.json: image small7_choice8_on.png present
+OK     TUI.json: image sub0_choice0_off.png present
+OK     TUI.json: image sub0_choice0_on.png present
+OK     TUI.json: image sub0_choice1_off.png present
+OK     TUI.json: image sub0_choice1_on.png present
+OK     TUI.json: image sub0_choice2_off.png present
+OK     TUI.json: image sub0_choice2_on.png present
+OK     TUI.json: image sub0_choice3_off.png present
+OK     TUI.json: image sub0_choice3_on.png present
+OK     TUI.json: image sub1_choice0_off.png present
+OK     TUI.json: image sub1_choice0_on.png present
+OK     TUI.json: image sub1_choice1_off.png present
+OK     TUI.json: image sub1_choice1_on.png present
+OK     TUI.json: image sub1_choice2_off.png present
+OK     TUI.json: image sub1_choice2_on.png present
+OK     TUI.json: image sub6_choice0_off.png present
+OK     TUI.json: image sub6_choice0_on.png present
+OK     TUI.json: image sub6_choice1_off.png present
+OK     TUI.json: image sub6_choice1_on.png present
+OK     TUI.json: image sub6_choice2_off.png present
+OK     TUI.json: image sub6_choice2_on.png present
+OK     TUI.json: image sub6_choice3_off.png present
+OK     TUI.json: image sub6_choice3_on.png present
+OK     TUI.json: image toggle_off.png present
+OK     TUI.json: image toggle_on.png present
+OK     TUI.json: 3 tabs
+OK     Q-Links.json: 3 tab maps, all values in range
+OK     version.xml uiversion 0.1.0.0
+0 errors, 0 warnings

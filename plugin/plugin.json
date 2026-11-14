@@ -1,0 +1,19 @@
+{
+  "name": "Vintage Military Radio",
+  "manufacturer": "Tropix R!X Crazy Jungle Sounds",
+  "version": "1.0.8",
+  "format": "vst2",
+  "kind": "effect",
+  "uid": "VMR8",
+  "numInputs": 2,
+  "numOutputs": 2,
+  "category": "Effect",
+  "file32": "VST/vintage-military-radio-arm32.so",
+  "file64": "VST/vintage-military-radio-arm64.so",
+  "description": "Eight-mode stereo cassette performance effect: speed, saturation, mute, reverse, warble, lo-fi, brake and stutter.",
+  "author": "Tropix R!X Crazy Jungle Sounds",
+  "url": "https://github.com/vulnerablecodes/music-production",
+  "license": "MIT",
+  "releaseHistory": "revisions.txt",
+  "isInstrument": false
+}

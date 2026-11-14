@@ -1,0 +1,1 @@
+Native/ARM32/ARM64 built. SDK validation and simulator reports enclosed. Explicit effect flags and category checked. Physical MPC effects-list behavior pending.

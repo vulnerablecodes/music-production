@@ -1,0 +1,10 @@
+VINTAGE MILITARY RADIO — v1.0.8
+VERSION 1.0.8
+Release prepared: 2026-11-14T20:52:03+00:00
+- First release under separate Vintage Military Radio identity (VMR8).
+- Explicit stereo-effect manifest and binary metadata; no synth/MIDI flags.
+- Original Crazy Cassette identity TW0p preserved separately for local use.
+- Renamed manufacturer/plugin folder, binary files, visible artwork and documentation.
+- Physical MPC Effects-tab discovery remains unverified.
+
+Original package completed: 2026-11-14T20:52:03+00:00

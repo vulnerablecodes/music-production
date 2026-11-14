@@ -1,0 +1,1 @@
+Vintage Military Radio uses original generated chrome / olive canvas artwork and native MPC controls. Decorative cipher barrels are not audio controls. UI asset animations are not recordings of an MPC.
