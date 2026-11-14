@@ -1,35 +1,31 @@
-# Vintage Military Radio v1.0.14
+# Vintage Military Radio
 
-Eight stereo tape-performance effects with the olive canvas / polished chrome FIELD / CIPHER interface. Vintage Military Radio is a separate plugin identity (VMR8) and can coexist with Crazy Cassette 88 (TW0p).
+**v1.0.16** · Stereo tape performance effect and procedural sound textures by **Tropix R!X Crazy Jungle Sounds** · MIT.
 
-## Installation and Effects browser
+![Current chrome interface](../../media/vintage-military-radio-current.jpg)
 
-1. Use MPC OS 3.10.1 or newer. Enable Preferences → Enhancements (Beta) → Enable Enhancements and External Plugin Support.
-2. Unzip the appropriate package. Copy the complete `Vintage Military Radio` folder directly into `VST2 Plugins` at the drive root; do not nest the ZIP's wrapper directory.
-3. Remove stale earlier copies of the *new radio design* installed under Crazy Cassette 88. Keep your original Crazy Cassette folder if desired. Keep one copy of each plugin UID across connected drives to avoid stale/duplicate discovery.
-4. Fully restart MPC after copying. Open an audio track/program/mixer insert FX slot, then the Effects browser / External Plugins list; this is an audio effect, not an instrument to create on a Plugin track.
-5. If it remains absent, report firmware version, which drive holds the folder, the exact displayed folder name and what happens when selected. Do not modify MPC system files.
+[Download v1.0.16](https://github.com/vulnerablecodes/music-production/releases/tag/v1.0.16) · [Eight-effect GIF](../../media/vintage-military-radio-eight-effects.gif) · [MP4 showcase](../../media/vintage-military-radio-eight-effects.mp4)
 
-The manifest explicitly declares kind=effect, isInstrument=false, two inputs and two outputs. The binary advertises VST effect category and does not set the synth flag. Host tests cannot prove physical MPC browser behavior; device testing is pending.
+Eight independent performance circuits: **Speed, Saturation, Mute, Reverse, Warble, Lo-Fi, Brake and Stutter**. Realistic polished chrome bat-handle lever switches use **UP = ON / DOWN = OFF**. Tap a nameplate to select its Rotor Settings; enable state stays independent of selection. HOLD switches between latched and momentary circuit operation. Decorative cipher barrels are not audio controls.
 
-Select an effect title to show its settings; ENGAGE operates it; HOLD changes latching/momentary behavior. The four cipher barrels are decorative.
+## Noise and sound layers
 
-Source is built with the inMusic MPC Plugin Builder SDK. To regenerate the skin, build native first, run make_chrome_skin.py, then build all targets. See verification logs and revisions.txt.
+The main page has **Tape Noise, Vinyl Crackle, Radio Static, White Noise and Mix** sliders. **SOUNDS** adds large sliders for all six sources, including **Brown Noise** and **Mains Hum**, with **50/60 Hz** selection. All new sound layers default to **0%**, synthesize locally without samples or downloads, and follow wet Mix, Mute and Bypass.
 
-The short install folder uses MPC's documented name-only skin lookup fallback. Manufacturer credit remains in metadata. Physical device confirmation is pending.
+![Sound texture controls](../../media/vintage-military-radio-sounds.jpg)
 
-## Performance workflow
-- Tap a chrome effect nameplate to select its Rotor Settings. The amber outline marks the circuit being edited.
-- Tap its metal ON/OFF switch to enable or disable that circuit. The switch label and amber LED show its actual state. Selecting a name never disables other effects.
-- Adjust readable, matching ivory/chrome setting buttons in the central bay. More parameters remain on CHARACTER/EXTRAS tabs.
-- UP is ON and DOWN is OFF. HOLD on latches the circuit switches; HOLD off makes them momentary.
-- Noise and Mix use compact horizontal faders below the recorder.
-The tape reels use a host-notified UI worker independent of audio processing. Normal tape motion runs with Speed off; Speed/Reverse/Brake affect visual motor motion. It is not a measured transport or audio speed meter. Physical MPC testing of v1.0.14 is pending.
+## Downloads and installation
 
-## Chrome switches and reel refresh
-Effect switches have larger reflective chrome levers, collars and amber state jewels. UP is ON, DOWN is OFF. Bypass and HOLD use the same finish. Reel phase is displayed through mouse-disabled native filmstrip controls and a native transport value label, to subscribe to MPC parameter refreshes. Desktop clock checks do not prove device repaint behavior; MPC animation testing is pending.
+For **MPC XL / Gen2 with MPC OS 3.10.1+**, the **SDK-aarch64.zip** is the direct folder-copy package. Enable Enhancements and External Plugin Support, extract it, and copy the complete **Vintage Military Radio** folder into **VST2 Plugins** at the drive root. Keep one installed copy of UID `VMR8` across connected drives. Replace the previous radio folder, fully restart MPC, then load it in an insert FX slot. The original Crazy Cassette remains a separate plugin identity.
 
-## Vinyl Crackle
-The dedicated Vinyl Crackle slider adds procedural record clicks and short filtered crackles independently of tape Noise. Default is 0%. Mix blends the wet signal and Bypass returns the dry signal; Mute also silences crackle. No audio samples or downloads are required.
+The **mpc-aarch64.zip** and **mpc-armv7.zip** assets are OpenMPC catalog installers. Follow the included `INSTALL.md` or use the catalog installer; their required portable wrapper and vendor-named internal folder differ from the SDK folder-copy ZIP. The source-and-both-architectures ZIP contains the simple-name SDK plugin folder, both binaries, source, build tools, skins, previews and verification logs. `SHA256SUMS.txt` lists release file digests.
 
-Radio Static and White Noise have main-page sliders. SOUNDS exposes Tape, Vinyl, Radio, White, Brown and Mains Hum levels plus 50/60 Hz mains selection. All new layers default to zero, follow Mix/Mute/Bypass, and synthesize locally without audio samples. Rotary switch pointers up indicate ON; down indicates OFF.
+## Verification and limits
+
+Native, ARM32 and ARM64 builds completed. The native host simulator passed **20 checks**; SDK validation reports **0 errors / 0 warnings**. All **16 mode/HOLD** touch-layout combinations and exact sprite dimensions pass. Texture tests cover all five new layers, zero defaults, independent output, dry Mix, Mute, Bypass and combined output bounds. Both catalog ZIPs pass `catalog_check.py --catalog --require-portable` with **0 warnings**.
+
+The owner confirmed v1.0.16 fully tested and working on **MPC XL (Gen2), MPC OS 3.10.1**, on 2026-11-14. The current skin uses Multicam Black woven fabric, white effect labels, high-contrast amber Rotor selections and bright ON lamps. Gen1/Force hardware and device CPU usage have not been tested. The GIF/MP4 shows assembled UI assets, **not an on-device recording or audio demonstration**.
+
+## Source and license
+
+Editable project source is under [plugin/](plugin/). Build with the inMusic MPC Plugin Builder SDK: build native to emit parameter metadata, run `make_chrome_skin.py`, then build all targets and run `release.py`. Preserve `VMR8` and the parameter index order. [Revision history](plugin/revisions.txt) records changes newest first. The SDK and community helper license notices are retained; no third-party manufacturer logo, proprietary sample content, or firmware files are distributed.

@@ -1,3 +1,22 @@
+VINTAGE MILITARY RADIO — v1.0.16
+VERSION 1.0.16
+Prepared: 2026-11-14T22:46:26+00:00
+- Rotor selections now use a luminous amber face and bright double rim; unselected choices are dark olive with ivory text. Same treatment applies to mains 50/60 Hz selection.
+- All eight effect nameplates use white faces and dark lettering; selected effect has an amber focus rim independent of enable state.
+- New high-resolution Multicam Black woven cloth master replaces small repeated background tiles on PERFORM and SOUNDS. Approved lever geometry and large amber ON lamps retained.
+- UI-only changes plus version metadata; 34 parameter indices, sound DSP, VMR8 and reel behavior unchanged.
+- Publication repack: 2026-11-14T22:56:16+00:00. User confirmed fully tested and working on MPC XL; publication and new catalog PR authorized. Binary and UI assets unchanged from tested v1.0.16.
+- Desktop: 20 host checks, 16 mode/HOLD layout scenarios and SDK validation passed. Gen1/Force hardware and device CPU benchmark remain untested.
+
+VINTAGE MILITARY RADIO — v1.0.15 TEST BUILD
+VERSION 1.0.15
+Prepared: 2026-11-14T22:35:42+00:00
+- Local test build only: no GitHub source, release, media or PR updates authorized until user confirms successful device testing.
+- Integrated user-approved realistic chrome bat-handle toggle artwork; UP=ON / DOWN=OFF. Rotary knobs removed.
+- Enlarged amber ON jewels to 28px with bright cores and glow; OFF lenses remain dark. Native lamp bindings retain independent effect enable states.
+- All 34 parameters, six sound layers, VMR8 identity and current reel-control/clock logic retained.
+- Physical MPC animation, switch interaction and sound-layer tests pending. Desktop checks recorded separately.
+
 VINTAGE MILITARY RADIO — v1.0.14
 VERSION 1.0.14
 Prepared: 2026-11-14T22:06:44+00:00

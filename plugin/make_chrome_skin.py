@@ -67,9 +67,8 @@ for side,cx in enumerate([174,363]):
 # v1.0.11: rebalance ONLY the approved chrome/canvas artwork and live controls.
 from PIL import ImageOps
 T=n['T']
-art=base.copy();canvas=art.crop((35,426,100,438))
-for y in range(16,610,12):
- for x in range(20,1260,65):base.paste(canvas,(x,y))
+art=base.copy();canvas=ImageOps.fit(Image.open(P/'artwork/multicam-black-v116.png').convert('RGB'),(1280,628),Image.Resampling.LANCZOS)
+base.paste(canvas.crop((20,16,1260,610)),(20,16))
 base.paste(art.crop((1260,16,1280,628)),(1260,16))
 base.paste(art.crop((0,610,1280,628)),(0,610))
 # Original chrome recorder and brass settings enclosure, retained at new sizes.
@@ -78,7 +77,7 @@ base.paste(art.crop((521,82,755,406)).resize((246,512),Image.Resampling.LANCZOS)
 a=ImageDraw.Draw(base)
 def txt(x,y,s,size=18,col='#eee3bf'):
  a.text((x,y),s,font=n['font'](size,True),fill=col,anchor='mm')
-txt(949,20,'EFFECT CIRCUITS',16)
+# Effect names occupy the freed header space.
 for y,s in [(266,'TAPE NOISE'),(318,'VINYL CRACKLE'),(370,'RADIO STATIC'),(422,'WHITE NOISE'),(474,'MIX')]:txt(165,y,s,14)
 txt(500,513,'TAP A NAME TO EDIT',11);txt(500,529,'UP = ON / DOWN = OFF',10)
 a.rounded_rectangle((80,220,310,243),4,fill='#182416',outline='#515a35')
@@ -86,74 +85,67 @@ a.rounded_rectangle((80,220,310,243),4,fill='#182416',outline='#515a35')
 base.save(D/'deck.png')
 # New nameplates and switches are derived from the approved chrome/ivory assets.
 full=['SPEED','SATURATION','MUTE','REVERSE','WARBLE','LO-FI','BRAKE','STUTTER']
-plate=art.crop((790,95,1007,125)).resize((292,40),Image.Resampling.LANCZOS).convert('RGBA')
+plate=art.crop((790,95,1007,125)).resize((292,32),Image.Resampling.LANCZOS).convert('RGBA')
 pad=art.crop((790,143,1007,210)).resize((292,58),Image.Resampling.LANCZOS).convert('RGBA')
 for mode,name in enumerate(full):
  for on in [0,1]:
   im=plate.copy();d=ImageDraw.Draw(im)
-  d.rounded_rectangle((18,6,273,33),5,fill='#292d12',outline='#ffd080' if on else '#696c45',width=2)
-  n['text'](d,(146,20),f'{mode+1:02d} / {name}',18,'#ffdf91' if on else '#eee3bf',True)
-  if on:d.rounded_rectangle((2,2,289,37),6,outline='#ffd080',width=2)
+  d.rounded_rectangle((18,3,273,28),5,fill='#f5f4ef',outline='#ffbd43' if on else '#c7c7b9',width=2)
+  n['text'](d,(146,16),f'{mode+1:02d} / {name}',18,'#202821',True)
+  if on:
+   d.rounded_rectangle((2,2,289,29),6,outline='#fff3c4',width=2)
+   d.rounded_rectangle((5,3,286,28),5,outline='#ffad24',width=2)
   im.save(D/f'circuit_name{mode}_{"on" if on else "off"}.png')
+# Approved photorealistic lever artwork, used as a reproducible sprite atlas.
+atlas=Image.open(P/'artwork/approved-toggle-preview.png').convert('RGBA')
 def metal_switch(w,h,on,caption):
- # Render at 4x. Alternating environment reflections define polished chrome.
- S=4;im=Image.new('RGBA',(w*S,h*S));d=ImageDraw.Draw(im)
- def box(b):return tuple(int(v*S) for v in b)
- def rounded(b,r,fill,outline=None,width=1):d.rounded_rectangle(box(b),int(r*S),fill=fill,outline=outline,width=width*S)
- def ellipse(b,fill,outline=None,width=1):d.ellipse(box(b),fill=fill,outline=outline,width=width*S)
- def metal(b,shape='ellipse',vertical=False):
-  x0,y0,x1,y1=b;W=int((x1-x0)*S);H=int((y1-y0)*S)
-  layer=Image.new('RGBA',(W,H));ld=ImageDraw.Draw(layer)
-  stops=[(0,'#171e1e'),(.08,'#f5f4e7'),(.19,'#b8c5c5'),(.31,'#394e56'),(.43,'#101c22'),(.50,'#eef9fa'),(.58,'#ffffff'),(.68,'#8b9a9a'),(.82,'#35413f'),(.93,'#c9cfbc'),(1,'#4b5752')]
-  from PIL import ImageColor
-  count=H if vertical else W
-  for i in range(count):
-   t=i/max(1,count-1)
-   for j in range(len(stops)-1):
-    if stops[j][0]<=t<=stops[j+1][0]:
-     lo,hi=stops[j:j+2];u=(t-lo[0])/(hi[0]-lo[0]);a=ImageColor.getrgb(lo[1]);bcol=ImageColor.getrgb(hi[1]);c=tuple(int(a[k]+(bcol[k]-a[k])*u) for k in range(3));break
-   ld.line((0,i,W,i) if vertical else (i,0,i,H),fill=c)
-  mask=Image.new('L',(W,H));md=ImageDraw.Draw(mask)
-  if shape=='ellipse':md.ellipse((0,0,W-1,H-1),fill=255)
-  elif shape=='hex':md.regular_polygon((W/2,H/2,min(W,H)/2-1),6,rotation=30,fill=255)
-  else:md.rounded_rectangle((0,0,W-1,H-1),min(W,H)//2,fill=255)
-  layer.putalpha(mask);im.alpha_composite(layer,(int(x0*S),int(y0*S)))
- # Machined chrome bezel and brushed olive inset.
- rounded((1,1,w-2,h-2),11,'#080d0b');rounded((2,2,w-3,h-3),10,'#d8e4df');rounded((4,4,w-5,h-5),9,'#3b4d49');rounded((5,5,w-6,h-6),8,'#101c15',outline='#bec8a8')
- for y in range(8,h-8):
-  c=24+int(7*(1-y/h));d.line(box((10,y,w-11,y)),fill=(c,c+12,c+1))
- cx=62 if w>250 else 42;cy=h/2;R=34 if h>=76 else 27
- ellipse((cx-R-3,cy-R+3,cx+R+4,cy+R+6),'#030704')
- metal((cx-R-2,cy-R-2,cx+R+2,cy+R+2),vertical=True)
- ellipse((cx-R+1,cy-R+1,cx+R-1,cy+R-1),'#12201b',outline='#d6e5db')
- # Knurled cylindrical rim catches alternating hard reflections.
- metal((cx-R+3,cy-R+3,cx+R-3,cy+R-3))
- for angle in range(0,360,12):
-  a=math.radians(angle);r=R-4
-  d.line(box((cx+(r-5)*math.cos(a),cy+(r-5)*math.sin(a),cx+r*math.cos(a),cy+r*math.sin(a))),fill='#243d42' if angle%24 else '#faffed',width=S)
- metal((cx-R+10,cy-R+10,cx+R-10,cy+R-10),vertical=True)
- ellipse((cx-R+12,cy-R+12,cx+R-12,cy+R-12),None,outline='#bdcfc9')
- # Pronounced engraved pointer: twelve o'clock ON, six o'clock OFF.
- direction=-1 if on else 1
- d.line(box((cx,cy+direction*4,cx,cy+direction*(R-14))),fill='#07110c',width=5*S)
- d.line(box((cx-1,cy+direction*4,cx-1,cy+direction*(R-14))),fill='#ffe2a0' if on else '#bdc9bd',width=2*S)
- ellipse((cx-3,cy-3,cx+3,cy+3),'#172a29',outline='#edf6ec')
- # Recessed amber jewel and engraved state legend.
- lx=w-27;ellipse((lx-8,cy-8,lx+8,cy+8),'#090e0b');metal((lx-7,cy-7,lx+7,cy+7),vertical=True)
- ellipse((lx-5,cy-5,lx+5,cy+5),'#ffc56b' if on else '#29372c');ellipse((lx-3,cy-4,lx,cy-1),'#fff4c1' if on else '#53604c')
- font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',(21 if w>250 else 16)*S)
- tx=(cx+w-22)/2
- d.text((int(tx*S),int((cy+1)*S)),caption,font=font,fill='#060a06',anchor='mm');d.text((int(tx*S),int((cy-1)*S)),caption,font=font,fill='#ffe1a5' if on else '#ccd2be',anchor='mm')
- for x in [14,w-14]:
-  metal((x-4,cy-4,x+4,cy+4));d.line(box((x-2,cy+1,x+2,cy-1)),fill='#23332d',width=S)
- return im.resize((w,h),Image.Resampling.LANCZOS)
-for on in [0,1]:metal_switch(292,80,on,'ON' if on else 'OFF').save(D/f'circuit_power_{"on" if on else "off"}.png')
+ crop=(910,98,1316,244) if on else (1340,98,1746,244)
+ raw=atlas.crop(crop)
+ mask=Image.new('L',(406*4,146*4));md=ImageDraw.Draw(mask)
+ md.rounded_rectangle((0,22*4,405*4,128*4),radius=12*4,fill=255)
+ if on:md.polygon([(96*4,0),(112*4,0),(120*4,8*4),(115*4,25*4),(88*4,31*4),(91*4,13*4)],fill=255)
+ else:md.ellipse((76*4,112*4,112*4,145*4),fill=255)
+ raw.putalpha(mask.resize((406,146),Image.Resampling.LANCZOS))
+ im=raw.resize((w,h),Image.Resampling.LANCZOS)
+ # Native captions keep globals readable; lever geometry is unchanged.
+ if caption not in ['ON','OFF']:
+  dr=ImageDraw.Draw(im);dr.rounded_rectangle((int(w*.36),int(h*.34),int(w*.77),int(h*.70)),3,fill='#122017')
+  n['text'](dr,(w*.565,h*.52),caption,16 if w>210 else 15,'#ffdb96' if on else '#d9ddcd',True)
+ # 28px amber jewel: obvious ON glow and an unlit dark OFF lens.
+ size=28;lamp=Image.new('RGBA',(size,size));ld=ImageDraw.Draw(lamp)
+ if on:
+  for r in range(13,7,-1):ld.ellipse((14-r,14-r,14+r,14+r),fill=(255,170,25,int(20+(13-r)*8)))
+ ld.ellipse((4,4,24,24),fill='#131b16',outline='#d6d7bd',width=2)
+ ld.ellipse((7,7,21,21),fill='#ffd25e' if on else '#243028',outline='#a78539' if on else '#465143')
+ if on:ld.ellipse((9,8,18,16),fill='#fff4b3');ld.ellipse((11,9,15,12),fill='#ffffff')
+ im.alpha_composite(lamp,(int(w*.91)-14,int(h*.52)-14))
+ return im
+for on in [0,1]:metal_switch(292,102,on,'ON' if on else 'OFF').save(D/f'circuit_power_{"on" if on else "off"}.png')
 for on in [0,1]:
- im=Image.new('RGBA',(292,6));ImageDraw.Draw(im).rounded_rectangle((2,1,289,4),2,fill='#ffc65f' if on else '#191c10');im.save(D/f'circuit_led_{on}.png')
+ im=Image.new('RGBA',(28,28));dr=ImageDraw.Draw(im)
+ if on:
+  for r in range(13,7,-1):dr.ellipse((14-r,14-r,14+r,14+r),fill=(255,175,30,25+(13-r)*7))
+ dr.ellipse((4,4,24,24),fill='#121b13',outline='#d6d7bd',width=2)
+ dr.ellipse((7,7,21,21),fill='#ffd25e' if on else '#243028',outline='#a78539' if on else '#465143')
+ if on:dr.ellipse((9,8,18,16),fill='#fff4b3');dr.ellipse((11,9,15,12),fill='#ffffff')
+ im.save(D/f'circuit_led_{on}.png')
 for on in [0,1]:
  im=art.crop((545,532,740,612)).resize((200,48),Image.Resampling.LANCZOS).convert('RGBA')
  if on:ImageDraw.Draw(im).rounded_rectangle((2,2,197,45),5,outline='#ffca62',width=2)
  im.save(D/f'hold_{"on" if on else "off"}.png')
+def setting_face(w,h,caption,on):
+ im=pad.resize((w,h),Image.Resampling.LANCZOS);dr=ImageDraw.Draw(im)
+ if on:
+  # Glow is contained inside native bounds, avoiding sprite clipping.
+  dr.rounded_rectangle((1,1,w-2,h-2),7,fill='#a86c0d',outline='#fff7d5',width=2)
+  dr.rounded_rectangle((4,4,w-5,h-5),6,fill='#ffb62d',outline='#ffe89a',width=2)
+  for yy in range(9,h-9):
+   t=(yy-9)/max(1,h-19);c=(255,int(220-44*t),int(113-65*t));dr.line((9,yy,w-10,yy),fill=c)
+  dr.rounded_rectangle((8,8,w-9,h-9),4,outline='#fff3c9',width=1)
+ else:
+  dr.rounded_rectangle((6,7,w-7,h-8),5,fill='#26342e',outline='#839083',width=1)
+ n['text'](dr,(w/2,h/2),caption,14 if len(caption)>6 else 17,'#201b0c' if on else '#e2e7d8',True)
+ return im
 # All settings use the same ivory/chrome control language as circuit switches.
 options={0:(13,['1/2','1/4','3/4','9/10']),1:(14,['Boost','Amp','Drive']),3:(21,['1/8','1/4','1/2','1 bar']),4:(15,['Gentle','Wow','Flutter','Worn','Seasick','Unstable','Jungle']),5:(16,['Dust','Cassette','Narrow','8-bit','6-bit','4-bit','Broken','Telephone']),6:(17,['1/8 beat','1/2 beat','1 beat','2 beats']),7:(18,['1/2','1/4','1/8','1/16','1/32','1/64','1/8T','1/16T','1/4T'])}
 E=[entry('Panel','Image',{'version':2,'imageType':'Regular','colour':'0','image':'deck.png'},'0 0 1280 628',focus='No')]
@@ -167,31 +159,29 @@ for mode,name in enumerate(full):
   for j,caption in enumerate(opts):
    x=394+j%2*112;y=122+j//2*72;asset=f'polished_option_{mode}_{j}'
    for on in [0,1]:
-    im=pad.resize((102,50),Image.Resampling.LANCZOS);d=ImageDraw.Draw(im)
-    d.rounded_rectangle((6,8,95,41),4,fill='#efc46f' if on else '#eee0bb',outline='#ffdc89' if on else '#ac9d77',width=2)
-    n['text'](d,(51,25),caption,14 if len(caption)>6 else 17,'#302b1d',True);im.save(D/f'{asset}_{"on" if on else "off"}.png')
+    setting_face(102,50,caption,on).save(D/f'{asset}_{"on" if on else "off"}.png')
    E.append(entry(name+' setting '+caption,'Button',g.button_data(asset+'_on.png',asset+'_off.png',j,len(opts)),f'{x} {y} 102 50',f'Parameter {idx}',inv));positions.setdefault(mode,[]).append((x,y,asset,j))
 for mode,name in enumerate(full):
- x=650+mode%2*306;y=34+mode//2*140
- E.append(entry('Select '+name,'Button',g.button_data(f'circuit_name{mode}_on.png',f'circuit_name{mode}_off.png',mode,8),f'{x} {y} 292 40','Parameter 25'))
- E.append(entry('Active '+name,'Indicator',{'version':1,'onImage':'circuit_led_1.png','offImage':'circuit_led_0.png','indicatorId':1,'numIndicatorsInGroup':1,'handleName':'Data'},f'{x} {y+43} 292 6',f'Parameter {5+mode}',focus='No'))
+ x=650+mode%2*306;y=22+mode//2*144
+ E.append(entry('Select '+name,'Button',g.button_data(f'circuit_name{mode}_on.png',f'circuit_name{mode}_off.png',mode,8),f'{x} {y} 292 32','Parameter 25'))
+ E.append(entry('Active '+name,'Indicator',{'version':1,'onImage':'circuit_led_1.png','offImage':'circuit_led_0.png','indicatorId':1,'numIndicatorsInGroup':1,'handleName':'Data'},f'{x+252} {y+73} 28 28',f'Parameter {5+mode}',focus='No'))
  for hold in [0,1]:
   data=g.button_data('circuit_power_on.png','circuit_power_off.png',1,1)
   if not hold:put(data,'gestureBehaviour','Hold')
-  E.append(entry('Enable '+name,'Button',data,f'{x} {y+50} 292 80',f'Parameter {5+mode}' if hold else f'ResetOnGestureEnd/Parameter {5+mode}',[f'IndexedEnabling/{hold}/2/Parameter 4']))
+  E.append(entry('Enable '+name,'Button',data,f'{x} {y+34} 292 102',f'Parameter {5+mode}' if hold else f'ResetOnGestureEnd/Parameter {5+mode}',[f'IndexedEnabling/{hold}/2/Parameter 4']))
 # Generate exact native frame sizes: MPC crops sprites; it does not rescale them.
 source_fader=fader
 fader=Image.new('RGBA',(320,34*127))
 for frame in range(127):fader.paste(source_fader.crop((0,frame*78,307,(frame+1)*78)).resize((320,34),Image.Resampling.LANCZOS),(0,frame*34))
 fader.save(D/'deck_fader.png')
 for on in [0,1]:
- metal_switch(225,64,on,'BYPASS').save(D/f'bypass_{"on" if on else "off"}.png')
- metal_switch(200,64,on,'HOLD').save(D/f'hold_{"on" if on else "off"}.png')
+ metal_switch(225,79,on,'BYPASS').save(D/f'bypass_{"on" if on else "off"}.png')
+ metal_switch(200,70,on,'HOLD').save(D/f'hold_{"on" if on else "off"}.png')
 # Compact Noise/Mix; original chrome fader sprites, original bindings.
 for y,idx in [(278,1),(330,28),(382,29),(434,30),(486,2)]:
  E.append(entry('Master horizontal fader','Knob',{'version':3,'knobType':'FilmStrip','filmStrip':'deck_fader.png','numFrames':127,'invert':False,'dragOrientation':'Horizontal','handleName':'Data'},f'34 {y} 320 34',f'Parameter {idx}'))
  E.append(label('',f'286 {y-20} 65 18',14,'ffeee3bf',param=f'WithSuffix[%]/Parameter {idx}'))
-for name,idx,asset,bounds in [('Bypass',3,'bypass','30 540 225 64'),('Hold',4,'hold','398 540 200 64')]:E.append(entry(name,'Button',g.button_data(asset+'_on.png',asset+'_off.png',1,1),bounds,f'Parameter {idx}'))
+for name,idx,asset,bounds in [('Bypass',3,'bypass','30 527 225 79'),('Hold',4,'hold','398 536 200 70')]:E.append(entry(name,'Button',g.button_data(asset+'_on.png',asset+'_off.png',1,1),bounds,f'Parameter {idx}'))
 # Exact-size host-notified reel strips; worker supplies continuous phase without audio processing.
 for side in range(2):
  disk=art.crop((128+side*189,184,220+side*189,276)).convert('RGBA');mask=Image.new('L',(92,92));ImageDraw.Draw(mask).ellipse((2,2,89,89),fill=255);disk.putalpha(mask);disk=disk.resize((64,64),Image.Resampling.LANCZOS)
@@ -205,11 +195,10 @@ for side in range(2):
  E.append(entry('Reel motor display',f'MotorDisplay{side}',{'version':1,'handleName':'Data'},f'{98+side*132} 97 64 64','Parameter 27',focus='No'))
 # A visible Value label subscribes to the same cached model as standard MPC controls.
 E.append(label('', '90 224 210 16',10,'ffd0c89f',param='Parameter 27'))
-main=get(get(T,'pageData'),'tabs')[0];put(main,'componentDefinition',g.component_definition([],E,'ff263122'));put(main,'qlinkBoundsData',['650 34 598 276','650 314 598 276','30 280 324 324','378 26 246 512'])
+E=[e for e in E if get(get(e,'componentData'),'type')!='Indicator']+[e for e in E if get(get(e,'componentData'),'type')=='Indicator']
+main=get(get(T,'pageData'),'tabs')[0];put(main,'componentDefinition',g.component_definition([],E,'ff263122'));put(main,'qlinkBoundsData',['650 22 598 280','650 310 598 280','30 260 324 346','378 26 246 510'])
 # SOUNDS page: six independent noise sources with large native sliders.
-texture=Image.new('RGB',(1280,628),'#21291a')
-for yy in range(0,628,12):
- for xx in range(0,1280,65):texture.paste(canvas,(xx,yy))
+texture=canvas.copy()
 back=ImageDraw.Draw(texture)
 for row in range(3):
  for col in range(2):
@@ -231,7 +220,7 @@ for j,(idx,title,helptext) in enumerate(textures):
   for hz in [0,1]:
    asset=f'hum_{hz}'
    for on in [0,1]:
-    im=pad.resize((130,44),Image.Resampling.LANCZOS);dr=ImageDraw.Draw(im);dr.rounded_rectangle((8,7,121,36),4,fill='#efc46f' if on else '#eee0bb');n['text'](dr,(65,22),'50 Hz' if hz==0 else '60 Hz',17,'#302b1d',True);im.save(D/f'{asset}_{"on" if on else "off"}.png')
+    setting_face(130,44,'50 Hz' if hz==0 else '60 Hz',on).save(D/f'{asset}_{"on" if on else "off"}.png')
    S.append(entry('Mains frequency','Button',g.button_data(asset+'_on.png',asset+'_off.png',hz,2),f'{xx+21+hz*146} {yy+124} 130 44','Parameter 33'))
 tabs=get(get(T,'pageData'),'tabs')
 tabs.append(g.Obj([('version',1),('tabName','SOUNDS'),('fnKeyIndex',3),('fnKeySubIndex',0),('componentDefinition',g.component_definition([],S,'ff21291a')),('qlinkBoundsData',['32 16 590 180','654 16 590 180','32 216 590 380','654 216 590 380'])]))
@@ -242,14 +231,14 @@ for mode in range(8):
  n['text'](d,(501,93),full[mode],19,'#ffd58a',True)
  n['text'](d,(195,232),'TRANSPORT |',10,'#d0c89f',True)
  for j in range(8):
-  x=650+j%2*306;y=34+j//2*140
-  im.alpha_composite(Image.open(D/f'circuit_name{j}_{"on" if j==mode else "off"}.png'),(x,y));im.alpha_composite(Image.open(D/f'circuit_led_{1 if j==mode else 0}.png'),(x,y+43));im.alpha_composite(Image.open(D/f'circuit_power_{"on" if j==mode else "off"}.png'),(x,y+50))
+  x=650+j%2*306;y=22+j//2*144
+  im.alpha_composite(Image.open(D/f'circuit_name{j}_{"on" if j==mode else "off"}.png'),(x,y));im.alpha_composite(Image.open(D/f'circuit_led_{1 if j==mode else 0}.png'),(x+252,y+73));im.alpha_composite(Image.open(D/f'circuit_power_{"on" if j==mode else "off"}.png'),(x,y+34))
  for x,y,asset,j in positions.get(mode,[]):im.alpha_composite(Image.open(D/f'{asset}_{"on" if j==(2 if mode==6 else 3 if mode==7 else 0) else "off"}.png'),(x,y))
  if mode==2:n['text'](d,(501,245),'NO EXTRA SETTINGS',14,'#eee3bf')
  for y,frame,caption in [(278,0,'0%'),(330,0,'0%'),(382,0,'0%'),(434,0,'0%'),(486,126,'100%')]:
   im.alpha_composite(fader.crop((0,frame*34,320,(frame+1)*34)),(34,y));n['text'](d,(318,y-12),caption,14,'#eee3bf')
  for side in range(2):im.alpha_composite(Image.open(D/f'polished_reel_{side}_0.png').crop((0,0,64,64)),(98+side*132,97))
- im.alpha_composite(Image.open(D/'bypass_off.png'),(30,540));im.alpha_composite(Image.open(D/'hold_on.png'),(398,540))
+ im.alpha_composite(Image.open(D/'bypass_off.png'),(30,527));im.alpha_composite(Image.open(D/'hold_on.png'),(398,536))
  im.convert('RGB').save(P/'Previews'/f'{mode+1}-{n["names"][mode].lower()}.png')
  if mode==0:im.convert('RGB').save(P/'UI-preview.png')
 contact=Image.new('RGB',(1280,1360),'#10170f')
